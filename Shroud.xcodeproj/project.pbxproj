@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		395BB4E12502FD7800FB30B3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 395BB4E02502FD7800FB30B3 /* GoogleService-Info.plist */; };
 		39D54AE124FEDCE000EB47B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D54AE024FEDCE000EB47B1 /* AppDelegate.swift */; };
 		39D54AE324FEDCE000EB47B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D54AE224FEDCE000EB47B1 /* SceneDelegate.swift */; };
 		39D54AE524FEDCE000EB47B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D54AE424FEDCE000EB47B1 /* ViewController.swift */; };
@@ -15,6 +16,9 @@
 		39D54AED24FEDCE200EB47B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39D54AEB24FEDCE200EB47B1 /* LaunchScreen.storyboard */; };
 		39D54AF824FEDCE200EB47B1 /* ShroudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D54AF724FEDCE200EB47B1 /* ShroudTests.swift */; };
 		39D54B0324FEDCE200EB47B1 /* ShroudUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D54B0224FEDCE200EB47B1 /* ShroudUITests.swift */; };
+		3B853C95F241EAC9CE0FC6C6 /* Pods_Shroud_ShroudUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEE2DF5F45BBB3CEBC64E87A /* Pods_Shroud_ShroudUITests.framework */; };
+		437E6A554A98173287B1A00E /* Pods_Shroud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B42C1EC079BBE970A36D22FF /* Pods_Shroud.framework */; };
+		AC623DD1F477192415B0528D /* Pods_ShroudTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FE202B15D0B09002371CBBD /* Pods_ShroudTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1B1BD052C595C1F41D98825B /* Pods-Shroud-ShroudUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shroud-ShroudUITests.release.xcconfig"; path = "Target Support Files/Pods-Shroud-ShroudUITests/Pods-Shroud-ShroudUITests.release.xcconfig"; sourceTree = "<group>"; };
+		395BB4E02502FD7800FB30B3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = ".git/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		39D54ADD24FEDCE000EB47B1 /* Shroud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shroud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39D54AE024FEDCE000EB47B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39D54AE224FEDCE000EB47B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +55,14 @@
 		39D54AFE24FEDCE200EB47B1 /* ShroudUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShroudUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		39D54B0224FEDCE200EB47B1 /* ShroudUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShroudUITests.swift; sourceTree = "<group>"; };
 		39D54B0424FEDCE200EB47B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7FE202B15D0B09002371CBBD /* Pods_ShroudTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShroudTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0CEEF627123731B8904E7BB /* Pods-ShroudTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShroudTests.debug.xcconfig"; path = "Target Support Files/Pods-ShroudTests/Pods-ShroudTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A54F50E822532E400F544FAC /* Pods-Shroud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shroud.debug.xcconfig"; path = "Target Support Files/Pods-Shroud/Pods-Shroud.debug.xcconfig"; sourceTree = "<group>"; };
+		AD5826EDA1A3594471D5A6B0 /* Pods-Shroud-ShroudUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shroud-ShroudUITests.debug.xcconfig"; path = "Target Support Files/Pods-Shroud-ShroudUITests/Pods-Shroud-ShroudUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B42C1EC079BBE970A36D22FF /* Pods_Shroud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shroud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEE2DF5F45BBB3CEBC64E87A /* Pods_Shroud_ShroudUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shroud_ShroudUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF1B992172C4A61B5BB2C210 /* Pods-ShroudTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShroudTests.release.xcconfig"; path = "Target Support Files/Pods-ShroudTests/Pods-ShroudTests.release.xcconfig"; sourceTree = "<group>"; };
+		EE94E14DC0DCDBC8F8B25EF4 /* Pods-Shroud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shroud.release.xcconfig"; path = "Target Support Files/Pods-Shroud/Pods-Shroud.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				437E6A554A98173287B1A00E /* Pods_Shroud.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC623DD1F477192415B0528D /* Pods_ShroudTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B853C95F241EAC9CE0FC6C6 /* Pods_Shroud_ShroudUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +100,8 @@
 				39D54AF624FEDCE200EB47B1 /* ShroudTests */,
 				39D54B0124FEDCE200EB47B1 /* ShroudUITests */,
 				39D54ADE24FEDCE000EB47B1 /* Products */,
+				56FFA0B2AF7494E84AC98F17 /* Pods */,
+				AE5F08E346BBAEA255C0EB7B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +121,7 @@
 				39D54AE024FEDCE000EB47B1 /* AppDelegate.swift */,
 				39D54AE224FEDCE000EB47B1 /* SceneDelegate.swift */,
 				39D54AE424FEDCE000EB47B1 /* ViewController.swift */,
+				395BB4E02502FD7800FB30B3 /* GoogleService-Info.plist */,
 				39D54AE624FEDCE000EB47B1 /* Main.storyboard */,
 				39D54AE924FEDCE200EB47B1 /* Assets.xcassets */,
 				39D54AEB24FEDCE200EB47B1 /* LaunchScreen.storyboard */,
@@ -128,6 +148,29 @@
 			path = ShroudUITests;
 			sourceTree = "<group>";
 		};
+		56FFA0B2AF7494E84AC98F17 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A54F50E822532E400F544FAC /* Pods-Shroud.debug.xcconfig */,
+				EE94E14DC0DCDBC8F8B25EF4 /* Pods-Shroud.release.xcconfig */,
+				AD5826EDA1A3594471D5A6B0 /* Pods-Shroud-ShroudUITests.debug.xcconfig */,
+				1B1BD052C595C1F41D98825B /* Pods-Shroud-ShroudUITests.release.xcconfig */,
+				A0CEEF627123731B8904E7BB /* Pods-ShroudTests.debug.xcconfig */,
+				CF1B992172C4A61B5BB2C210 /* Pods-ShroudTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		AE5F08E346BBAEA255C0EB7B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B42C1EC079BBE970A36D22FF /* Pods_Shroud.framework */,
+				BEE2DF5F45BBB3CEBC64E87A /* Pods_Shroud_ShroudUITests.framework */,
+				7FE202B15D0B09002371CBBD /* Pods_ShroudTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +178,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 39D54B0724FEDCE200EB47B1 /* Build configuration list for PBXNativeTarget "Shroud" */;
 			buildPhases = (
+				83FCA158769354914F949C5C /* [CP] Check Pods Manifest.lock */,
 				39D54AD924FEDCE000EB47B1 /* Sources */,
 				39D54ADA24FEDCE000EB47B1 /* Frameworks */,
 				39D54ADB24FEDCE000EB47B1 /* Resources */,
+				FD06AEC1ADD6267713FD773D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +197,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 39D54B0A24FEDCE200EB47B1 /* Build configuration list for PBXNativeTarget "ShroudTests" */;
 			buildPhases = (
+				8A98DA205351512F15537F44 /* [CP] Check Pods Manifest.lock */,
 				39D54AEF24FEDCE200EB47B1 /* Sources */,
 				39D54AF024FEDCE200EB47B1 /* Frameworks */,
 				39D54AF124FEDCE200EB47B1 /* Resources */,
@@ -170,9 +216,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 39D54B0D24FEDCE200EB47B1 /* Build configuration list for PBXNativeTarget "ShroudUITests" */;
 			buildPhases = (
+				F964157FAA5920A6019FBE01 /* [CP] Check Pods Manifest.lock */,
 				39D54AFA24FEDCE200EB47B1 /* Sources */,
 				39D54AFB24FEDCE200EB47B1 /* Frameworks */,
 				39D54AFC24FEDCE200EB47B1 /* Resources */,
+				2FD6162F5698CE7A2386FF15 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -233,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39D54AED24FEDCE200EB47B1 /* LaunchScreen.storyboard in Resources */,
+				395BB4E12502FD7800FB30B3 /* GoogleService-Info.plist in Resources */,
 				39D54AEA24FEDCE200EB47B1 /* Assets.xcassets in Resources */,
 				39D54AE824FEDCE000EB47B1 /* Main.storyboard in Resources */,
 			);
@@ -253,6 +302,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2FD6162F5698CE7A2386FF15 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Shroud-ShroudUITests/Pods-Shroud-ShroudUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Shroud-ShroudUITests/Pods-Shroud-ShroudUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Shroud-ShroudUITests/Pods-Shroud-ShroudUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		83FCA158769354914F949C5C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Shroud-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8A98DA205351512F15537F44 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ShroudTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F964157FAA5920A6019FBE01 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Shroud-ShroudUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD06AEC1ADD6267713FD773D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Shroud/Pods-Shroud-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Shroud/Pods-Shroud-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Shroud/Pods-Shroud-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		39D54AD924FEDCE000EB47B1 /* Sources */ = {
@@ -432,9 +584,11 @@
 		};
 		39D54B0824FEDCE200EB47B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A54F50E822532E400F544FAC /* Pods-Shroud.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3B9BY3LUJD;
 				INFOPLIST_FILE = Shroud/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -449,9 +603,11 @@
 		};
 		39D54B0924FEDCE200EB47B1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE94E14DC0DCDBC8F8B25EF4 /* Pods-Shroud.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3B9BY3LUJD;
 				INFOPLIST_FILE = Shroud/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -466,6 +622,7 @@
 		};
 		39D54B0B24FEDCE200EB47B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0CEEF627123731B8904E7BB /* Pods-ShroudTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -487,6 +644,7 @@
 		};
 		39D54B0C24FEDCE200EB47B1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF1B992172C4A61B5BB2C210 /* Pods-ShroudTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -508,6 +666,7 @@
 		};
 		39D54B0E24FEDCE200EB47B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD5826EDA1A3594471D5A6B0 /* Pods-Shroud-ShroudUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -527,6 +686,7 @@
 		};
 		39D54B0F24FEDCE200EB47B1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1B1BD052C595C1F41D98825B /* Pods-Shroud-ShroudUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
