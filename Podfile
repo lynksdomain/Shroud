@@ -10,6 +10,7 @@ target 'Shroud' do
 pod 'Firebase/Analytics'
 pod 'Firebase/Firestore'
 pod 'Firebase/Storage'
+pod 'Firebase/Auth'
 
   target 'ShroudTests' do
     inherit! :search_paths
