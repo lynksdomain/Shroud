@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		393C68E625030B09003B6849 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393C68E525030B09003B6849 /* SignInView.swift */; };
+		39488D2B2506D3A80014ACB9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39488D2A2506D3A80014ACB9 /* SignUpViewController.swift */; };
+		39488D2D2506D3C00014ACB9 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39488D2C2506D3C00014ACB9 /* SignUpView.swift */; };
 		395BB4E12502FD7800FB30B3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 395BB4E02502FD7800FB30B3 /* GoogleService-Info.plist */; };
 		398C6C22250320B5002AC72A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398C6C21250320B5002AC72A /* SignInViewController.swift */; };
 		39D54AE124FEDCE000EB47B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D54AE024FEDCE000EB47B1 /* AppDelegate.swift */; };
@@ -42,6 +44,8 @@
 /* Begin PBXFileReference section */
 		1B1BD052C595C1F41D98825B /* Pods-Shroud-ShroudUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shroud-ShroudUITests.release.xcconfig"; path = "Target Support Files/Pods-Shroud-ShroudUITests/Pods-Shroud-ShroudUITests.release.xcconfig"; sourceTree = "<group>"; };
 		393C68E525030B09003B6849 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		39488D2A2506D3A80014ACB9 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		39488D2C2506D3C00014ACB9 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		395BB4E02502FD7800FB30B3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = ".git/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		398C6C21250320B5002AC72A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		39D54ADD24FEDCE000EB47B1 /* Shroud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shroud.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +127,8 @@
 				39D54AE024FEDCE000EB47B1 /* AppDelegate.swift */,
 				39D54AE224FEDCE000EB47B1 /* SceneDelegate.swift */,
 				393C68E525030B09003B6849 /* SignInView.swift */,
+				39488D2A2506D3A80014ACB9 /* SignUpViewController.swift */,
+				39488D2C2506D3C00014ACB9 /* SignUpView.swift */,
 				398C6C21250320B5002AC72A /* SignInViewController.swift */,
 				395BB4E02502FD7800FB30B3 /* GoogleService-Info.plist */,
 				39D54AE624FEDCE000EB47B1 /* Main.storyboard */,
@@ -418,6 +424,8 @@
 				393C68E625030B09003B6849 /* SignInView.swift in Sources */,
 				398C6C22250320B5002AC72A /* SignInViewController.swift in Sources */,
 				39D54AE324FEDCE000EB47B1 /* SceneDelegate.swift in Sources */,
+				39488D2D2506D3C00014ACB9 /* SignUpView.swift in Sources */,
+				39488D2B2506D3A80014ACB9 /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

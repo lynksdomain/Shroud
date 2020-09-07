@@ -8,10 +8,38 @@
 
 import UIKit
 
+protocol SignInDelegate: AnyObject {
+    func signUpPressed()
+    func logInPressed()
+}
+
+
 class SignInView: UIView {
+    
+    weak var delegate: SignInDelegate?
+    
+    lazy var signUpButton: UIButton = {
+        var button = UIButton(type: .system)
+        button.setTitle("Sign Up", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(SignUpPressed), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var logInButton: UIButton = {
+        var button = UIButton(type: .system)
+        button.setTitleColor(.white, for: .normal)
+        button.setTitle("Log In", for: .normal)
+        button.backgroundColor = .systemBlue
+        button.addTarget(self, action: #selector(logInPressed), for: .touchUpInside)
+        return button
+    }()
+    
     lazy var shroudLogo: UIImageView = {
         var iv = UIImageView()
         iv.contentMode = .scaleAspectFill
+        iv.image = UIImage(named: "logo.png")?.withRenderingMode(.alwaysTemplate)
+        iv.tintColor = .white
         return iv
     }()
     
@@ -24,6 +52,7 @@ class SignInView: UIView {
     lazy var passwordTextField: UITextField = {
        var tf = CustomTextField()
         tf.placeholder = "Password"
+        tf.isSecureTextEntry = true
         return tf
     }()
     
@@ -37,11 +66,11 @@ class SignInView: UIView {
     }
     
     private func commonInit () {
-        backgroundColor = .white
-        shroudLogo.image = UIImage(named: "logo.png")
+        backgroundColor = .black
         addLogo()
         addEmailTextField()
         addPasswordTextField()
+        addStackButtons()
     }
     
     private func addLogo() {
@@ -73,6 +102,30 @@ class SignInView: UIView {
         passwordTextField.backgroundColor = UIColor.lightGray.withAlphaComponent(0.15)
         passwordTextField.heightAnchor.constraint(equalToConstant: 35).isActive = true
     }
+    
+   
+    
+    private func addStackButtons() {
+        let stack = UIStackView(arrangedSubviews: [signUpButton,logInButton])
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(stack)
+        stack.distribution = .fillEqually
+        stack.axis = .horizontal
+        stack.centerXAnchor.constraint(equalTo: passwordTextField.centerXAnchor).isActive = true
+        stack.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 22).isActive = true
+        stack.spacing = 22
+        logInButton.translatesAutoresizingMaskIntoConstraints = false
+        logInButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+    }
+    
+    @objc private func logInPressed() {
+        delegate?.logInPressed()
+    }
+    
+    @objc private func SignUpPressed() {
+        delegate?.signUpPressed()
+      }
+      
 }
 
 
@@ -82,6 +135,23 @@ class CustomTextField: UITextField {
         static let topPadding: CGFloat = 8
     }
 
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        attributedPlaceholder = NSAttributedString(string: "a",
+                                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.3)])
+        keyboardAppearance = .dark
+        textColor = .white
+    }
+    
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         return CGRect(
             x: bounds.origin.x + Constants.sidePadding,
