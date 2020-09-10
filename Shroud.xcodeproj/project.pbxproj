@@ -12,9 +12,14 @@
 		39488D2D2506D3C00014ACB9 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39488D2C2506D3C00014ACB9 /* SignUpView.swift */; };
 		395BB4E12502FD7800FB30B3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 395BB4E02502FD7800FB30B3 /* GoogleService-Info.plist */; };
 		398C6C22250320B5002AC72A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398C6C21250320B5002AC72A /* SignInViewController.swift */; };
+		39B371512508336800C6C172 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B371502508336800C6C172 /* FirebaseAuthService.swift */; };
+		39B371532508344100C6C172 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B371522508344100C6C172 /* FirestoreService.swift */; };
+		39B37157250834E600C6C172 /* ShroudUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B37156250834E600C6C172 /* ShroudUser.swift */; };
+		39BDD54B2509C49200223D98 /* FriendListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BDD54A2509C49200223D98 /* FriendListView.swift */; };
+		39BDD54D2509C4A700223D98 /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BDD54C2509C4A700223D98 /* FriendListViewController.swift */; };
+		39BDD54F2509C5DB00223D98 /* MainControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BDD54E2509C5DB00223D98 /* MainControllers.swift */; };
 		39D54AE124FEDCE000EB47B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D54AE024FEDCE000EB47B1 /* AppDelegate.swift */; };
 		39D54AE324FEDCE000EB47B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D54AE224FEDCE000EB47B1 /* SceneDelegate.swift */; };
-		39D54AE824FEDCE000EB47B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39D54AE624FEDCE000EB47B1 /* Main.storyboard */; };
 		39D54AEA24FEDCE200EB47B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39D54AE924FEDCE200EB47B1 /* Assets.xcassets */; };
 		39D54AED24FEDCE200EB47B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39D54AEB24FEDCE200EB47B1 /* LaunchScreen.storyboard */; };
 		39D54AF824FEDCE200EB47B1 /* ShroudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D54AF724FEDCE200EB47B1 /* ShroudTests.swift */; };
@@ -48,10 +53,15 @@
 		39488D2C2506D3C00014ACB9 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		395BB4E02502FD7800FB30B3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = ".git/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		398C6C21250320B5002AC72A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		39B371502508336800C6C172 /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
+		39B371522508344100C6C172 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirestoreService.swift; path = /Users/lynk/Desktop/Shroud/Shroud/FirestoreService.swift; sourceTree = "<absolute>"; };
+		39B37156250834E600C6C172 /* ShroudUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ShroudUser.swift; path = /Users/lynk/Desktop/Shroud/Shroud/ShroudUser.swift; sourceTree = "<absolute>"; };
+		39BDD54A2509C49200223D98 /* FriendListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListView.swift; sourceTree = "<group>"; };
+		39BDD54C2509C4A700223D98 /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
+		39BDD54E2509C5DB00223D98 /* MainControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainControllers.swift; sourceTree = "<group>"; };
 		39D54ADD24FEDCE000EB47B1 /* Shroud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shroud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39D54AE024FEDCE000EB47B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39D54AE224FEDCE000EB47B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		39D54AE724FEDCE000EB47B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		39D54AE924FEDCE200EB47B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		39D54AEC24FEDCE200EB47B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		39D54AEE24FEDCE200EB47B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,6 +109,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39B371582508352800C6C172 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				39B37156250834E600C6C172 /* ShroudUser.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		39B3715A2508354400C6C172 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				39B371522508344100C6C172 /* FirestoreService.swift */,
+				39B371502508336800C6C172 /* FirebaseAuthService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		39B3715B2508355E00C6C172 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				393C68E525030B09003B6849 /* SignInView.swift */,
+				39488D2C2506D3C00014ACB9 /* SignUpView.swift */,
+				39BDD54A2509C49200223D98 /* FriendListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		39B3715C2508357100C6C172 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				39488D2A2506D3A80014ACB9 /* SignUpViewController.swift */,
+				39BDD54C2509C4A700223D98 /* FriendListViewController.swift */,
+				398C6C21250320B5002AC72A /* SignInViewController.swift */,
+				39BDD54E2509C5DB00223D98 /* MainControllers.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		39D54AD424FEDCE000EB47B1 = {
 			isa = PBXGroup;
 			children = (
@@ -124,15 +172,14 @@
 		39D54ADF24FEDCE000EB47B1 /* Shroud */ = {
 			isa = PBXGroup;
 			children = (
-				39D54AE024FEDCE000EB47B1 /* AppDelegate.swift */,
-				39D54AE224FEDCE000EB47B1 /* SceneDelegate.swift */,
-				393C68E525030B09003B6849 /* SignInView.swift */,
-				39488D2A2506D3A80014ACB9 /* SignUpViewController.swift */,
-				39488D2C2506D3C00014ACB9 /* SignUpView.swift */,
-				398C6C21250320B5002AC72A /* SignInViewController.swift */,
-				395BB4E02502FD7800FB30B3 /* GoogleService-Info.plist */,
-				39D54AE624FEDCE000EB47B1 /* Main.storyboard */,
+				39B371582508352800C6C172 /* Models */,
+				39B3715A2508354400C6C172 /* Services */,
+				39B3715B2508355E00C6C172 /* Views */,
+				39B3715C2508357100C6C172 /* Controllers */,
 				39D54AE924FEDCE200EB47B1 /* Assets.xcassets */,
+				395BB4E02502FD7800FB30B3 /* GoogleService-Info.plist */,
+				39D54AE224FEDCE000EB47B1 /* SceneDelegate.swift */,
+				39D54AE024FEDCE000EB47B1 /* AppDelegate.swift */,
 				39D54AEB24FEDCE200EB47B1 /* LaunchScreen.storyboard */,
 				39D54AEE24FEDCE200EB47B1 /* Info.plist */,
 			);
@@ -292,7 +339,6 @@
 				39D54AED24FEDCE200EB47B1 /* LaunchScreen.storyboard in Resources */,
 				395BB4E12502FD7800FB30B3 /* GoogleService-Info.plist in Resources */,
 				39D54AEA24FEDCE200EB47B1 /* Assets.xcassets in Resources */,
-				39D54AE824FEDCE000EB47B1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,10 +466,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39BDD54F2509C5DB00223D98 /* MainControllers.swift in Sources */,
+				39BDD54D2509C4A700223D98 /* FriendListViewController.swift in Sources */,
+				39B371512508336800C6C172 /* FirebaseAuthService.swift in Sources */,
 				39D54AE124FEDCE000EB47B1 /* AppDelegate.swift in Sources */,
 				393C68E625030B09003B6849 /* SignInView.swift in Sources */,
 				398C6C22250320B5002AC72A /* SignInViewController.swift in Sources */,
+				39BDD54B2509C49200223D98 /* FriendListView.swift in Sources */,
 				39D54AE324FEDCE000EB47B1 /* SceneDelegate.swift in Sources */,
+				39B371532508344100C6C172 /* FirestoreService.swift in Sources */,
+				39B37157250834E600C6C172 /* ShroudUser.swift in Sources */,
 				39488D2D2506D3C00014ACB9 /* SignUpView.swift in Sources */,
 				39488D2B2506D3A80014ACB9 /* SignUpViewController.swift in Sources */,
 			);
@@ -461,14 +513,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		39D54AE624FEDCE000EB47B1 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				39D54AE724FEDCE000EB47B1 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		39D54AEB24FEDCE200EB47B1 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -602,6 +646,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3B9BY3LUJD;
 				INFOPLIST_FILE = Shroud/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -621,6 +666,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3B9BY3LUJD;
 				INFOPLIST_FILE = Shroud/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

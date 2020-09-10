@@ -10,7 +10,7 @@ import UIKit
 
 protocol SignInDelegate: AnyObject {
     func signUpPressed()
-    func logInPressed()
+    func logInPressed(email: String? , password: String?)
 }
 
 
@@ -88,7 +88,6 @@ class SignInView: UIView {
         emailTextField.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0).isActive = true
         emailTextField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.75).isActive = true
         emailTextField.topAnchor.constraint(equalTo: shroudLogo.bottomAnchor, constant: 22).isActive = true
-        emailTextField.backgroundColor = UIColor.lightGray.withAlphaComponent(0.15)
         emailTextField.heightAnchor.constraint(equalToConstant: 35).isActive = true
     }
     
@@ -99,7 +98,6 @@ class SignInView: UIView {
         passwordTextField.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0).isActive = true
         passwordTextField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.75).isActive = true
         passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 11).isActive = true
-        passwordTextField.backgroundColor = UIColor.lightGray.withAlphaComponent(0.15)
         passwordTextField.heightAnchor.constraint(equalToConstant: 35).isActive = true
     }
     
@@ -119,7 +117,7 @@ class SignInView: UIView {
     }
     
     @objc private func logInPressed() {
-        delegate?.logInPressed()
+        delegate?.logInPressed(email: emailTextField.text, password: passwordTextField.text)
     }
     
     @objc private func SignUpPressed() {
@@ -150,6 +148,7 @@ class CustomTextField: UITextField {
                                                    attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.3)])
         keyboardAppearance = .dark
         textColor = .white
+        backgroundColor = ShroudColors.darkGray
     }
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {

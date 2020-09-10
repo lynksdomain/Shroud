@@ -121,7 +121,6 @@ class SignUpView: UIView {
            emailTextField.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0).isActive = true
            emailTextField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.75).isActive = true
            emailTextField.topAnchor.constraint(equalTo: notice.bottomAnchor, constant: 22).isActive = true
-           emailTextField.backgroundColor = UIColor.lightGray.withAlphaComponent(0.15)
            emailTextField.heightAnchor.constraint(equalToConstant: 35).isActive = true
        }
        
@@ -132,7 +131,6 @@ class SignUpView: UIView {
            passwordTextField.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0).isActive = true
            passwordTextField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.75).isActive = true
            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 11).isActive = true
-           passwordTextField.backgroundColor = UIColor.lightGray.withAlphaComponent(0.15)
            passwordTextField.heightAnchor.constraint(equalToConstant: 35).isActive = true
        }
     
@@ -142,7 +140,6 @@ class SignUpView: UIView {
         usernameTextField.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0).isActive = true
         usernameTextField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.75).isActive = true
         usernameTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 11).isActive = true
-        usernameTextField.backgroundColor = UIColor.lightGray.withAlphaComponent(0.15)
         usernameTextField.heightAnchor.constraint(equalToConstant: 35).isActive = true
     }
     

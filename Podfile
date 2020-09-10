@@ -11,6 +11,7 @@ pod 'Firebase/Analytics'
 pod 'Firebase/Firestore'
 pod 'Firebase/Storage'
 pod 'Firebase/Auth'
+pod 'FirebaseFirestoreSwift'
 
   target 'ShroudTests' do
     inherit! :search_paths
