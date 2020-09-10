@@ -20,9 +20,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = ViewController()
+        let main = MainControllers()
+        window?.rootViewController = main
         window?.makeKeyAndVisible()
-        
+        let sign = SignInViewController()
+        sign.modalPresentationStyle = .fullScreen
+        sign.modalTransitionStyle = .crossDissolve
+        main.present(sign, animated: false, completion: nil)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
