@@ -36,4 +36,27 @@ class FirestoreService {
             }
         }
     }
+    
+    
+    func addFriend(_ username: String, onCompletion: @escaping (Result<Void, Error>) -> Void) {
+        db.collection("users").whereField("username", isEqualTo: username).getDocuments { (snapshot, error) in
+            if let error = error {
+                onCompletion(.failure(error))
+            } else {
+                if let snapshot = snapshot,
+                    snapshot.documents.count > 0,
+                    let shroudUser = ShroudUser(dictionary: snapshot.documents[0].data()) {
+                    self.db.collection("users").document(FirebaseAuthService.manager.currentUser!.uid).collection("friends").document(shroudUser.uid).setData(shroudUser.fieldsDict) { error in
+                        if let error = error {
+                            onCompletion(.failure(error))
+                        } else {
+                            onCompletion(.success(()))
+                        }
+                    }
+                } else {
+                    onCompletion(.failure(GenericError.friendFound))
+                }
+            }
+        }
+    }
 }

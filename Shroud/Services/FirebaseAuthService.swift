@@ -12,6 +12,7 @@ import FirebaseAuth
 enum GenericError: Error {
     case unknown
     case usernameFound
+    case friendFound
 }
 
 extension GenericError: LocalizedError {
@@ -21,6 +22,8 @@ extension GenericError: LocalizedError {
             return NSLocalizedString("Unknown Error", comment: "Unknown Error")
         case .usernameFound:
             return NSLocalizedString("Username already taken!", comment: "username error")
+        case .friendFound:
+            return NSLocalizedString("Username not found!", comment: "username error")
         }
     }
 }

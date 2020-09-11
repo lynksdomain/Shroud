@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let sign = SignInViewController()
         sign.modalPresentationStyle = .fullScreen
         sign.modalTransitionStyle = .crossDissolve
-        main.present(sign, animated: false, completion: nil)
+        //main.present(sign, animated: false, completion: nil)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
