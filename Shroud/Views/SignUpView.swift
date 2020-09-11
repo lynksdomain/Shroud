@@ -20,6 +20,9 @@ class SignUpView: UIView {
     lazy var emailTextField: UITextField = {
         var tf = CustomTextField()
         tf.placeholder = "Email"
+        tf.autocapitalizationType = .none
+        tf.autocorrectionType = .no
+        tf.keyboardType = .emailAddress
         return tf
     }()
     
@@ -36,12 +39,16 @@ class SignUpView: UIView {
         var tf = CustomTextField()
         tf.placeholder = "Password"
         tf.isSecureTextEntry = true
+        tf.autocapitalizationType = .none
+        tf.autocorrectionType = .no
         return tf
     }()
     
     lazy var usernameTextField: UITextField = {
         var tf = CustomTextField()
         tf.placeholder = "Username"
+        tf.autocapitalizationType = .none
+        tf.autocorrectionType = .no
         return tf
     }()
     

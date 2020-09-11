@@ -45,6 +45,8 @@ class AddFriendView: UIView {
     
     lazy var usernameTextField: UITextField = {
         var tf = CustomTextField()
+        tf.autocorrectionType = .no
+        tf.autocapitalizationType = .none
         tf.placeholder = "Username"
         return tf
     }()

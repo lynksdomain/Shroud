@@ -59,4 +59,30 @@ class FirestoreService {
             }
         }
     }
+    
+    func fetchFriends(onCompletion: @escaping (Result<[ShroudUser],Error>) -> Void) {
+        guard let current = FirebaseAuthService.manager.currentUser else {
+            onCompletion(.failure(GenericError.unknown))
+            return
+        }
+        
+        db.collection("users").document(current.uid).collection("friends").addSnapshotListener({ (snapshot, error) in
+            if let error = error {
+                onCompletion(.failure(error))
+            } else {
+                if let snapshot = snapshot {
+                    var friends = [ShroudUser]()
+                    for document in snapshot.documents {
+                        guard let user = ShroudUser(dictionary: document.data()) else { continue }
+                        friends.append(user)
+                    }
+                    onCompletion(.success(friends))
+                }
+            }
+        })
+        
+        
+        
+        
+    }
 }
