@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         apperance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         apperance.isTranslucent = false
         apperance.barStyle = .black
+        
         return true
     }
 

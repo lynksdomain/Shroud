@@ -49,6 +49,7 @@ class FriendListCell: UITableViewCell {
     
     private func commonInit() {
         backgroundColor = .black
+        selectionStyle = .none
         addAvatar()
         addName()
         addStatus()

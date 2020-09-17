@@ -20,13 +20,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
-        let main = MainControllers()
+        
+        let main = UINavigationController(rootViewController: MainControllers())
+        //main.title = "Shroud"
         window?.rootViewController = main
         window?.makeKeyAndVisible()
+        if FirebaseAuthService.manager.currentUser == nil {
         let sign = SignInViewController()
-        sign.modalPresentationStyle = .fullScreen
+        sign.modalPresentationStyle = .overCurrentContext
         sign.modalTransitionStyle = .crossDissolve
-        //main.present(sign, animated: false, completion: nil)
+        main.present(sign, animated: false, completion: nil)
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -10,6 +10,7 @@ import UIKit
 
 class FriendListViewController: UIViewController {
 
+    private var loaded = false
     private var friendListView = FriendListView()
     private var friends = [ShroudUser]() {
         didSet {
@@ -26,16 +27,26 @@ class FriendListViewController: UIViewController {
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        guard loaded else {
+        navigationController?.navigationBar.topItem?.title = "Shroud"
+        navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFriend))
+        navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+            loaded.toggle()
+            return
+        }
+
+    }
+    
     private func setUp() {
         view.addSubview(friendListView)
         friendListView.friendListTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-               friendListView.friendListTableView.delegate = self
-               friendListView.friendListTableView.dataSource = self
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFriend))
+        friendListView.friendListTableView.delegate = self
+        friendListView.friendListTableView.dataSource = self
+        
     }
     
-    
-    private func getFriends() {
+     func getFriends() {
         
         FirestoreService.manager.fetchFriends { (result) in
             switch result {
@@ -52,7 +63,7 @@ class FriendListViewController: UIViewController {
     
     @objc private func addFriend() {
         let add = AddFriendViewController()
-        add.modalPresentationStyle = .fullScreen
+        add.modalPresentationStyle = .overFullScreen
         present(add, animated: true, completion: nil)
     }
 }
@@ -75,5 +86,11 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
         return 75
     }
     
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let user = friends[indexPath.row]
+        let msgView = MessageViewController()
+        navigationController?.pushViewController(msgView, animated: true)
+    }
     
 }

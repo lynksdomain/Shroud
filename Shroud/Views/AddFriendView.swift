@@ -90,7 +90,7 @@ class AddFriendView: UIView {
     private func addDismissButton() {
         dismissButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(dismissButton)
-        dismissButton.topAnchor.constraint(equalTo: topAnchor, constant: 11).isActive = true
+        dismissButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 11).isActive = true
         dismissButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11).isActive = true
         dismissButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
         dismissButton.heightAnchor.constraint(equalToConstant: 30).isActive = true

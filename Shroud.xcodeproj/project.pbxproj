@@ -15,6 +15,10 @@
 		39630162250AC5A600939CA9 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39630161250AC5A600939CA9 /* AddFriendViewController.swift */; };
 		39630164250AE79F00939CA9 /* AddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39630163250AE79F00939CA9 /* AddFriendView.swift */; };
 		398C6C22250320B5002AC72A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398C6C21250320B5002AC72A /* SignInViewController.swift */; };
+		399FBB6A2512F54F00C9096B /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399FBB692512F54F00C9096B /* MessageViewController.swift */; };
+		399FBB6F2512F5E000C9096B /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399FBB6E2512F5E000C9096B /* MessageView.swift */; };
+		399FBB742512F6B000C9096B /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399FBB732512F6B000C9096B /* MessageCell.swift */; };
+		399FBB792513075100C9096B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399FBB782513075100C9096B /* Extensions.swift */; };
 		39B371512508336800C6C172 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B371502508336800C6C172 /* FirebaseAuthService.swift */; };
 		39B371532508344100C6C172 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B371522508344100C6C172 /* FirestoreService.swift */; };
 		39B37157250834E600C6C172 /* ShroudUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B37156250834E600C6C172 /* ShroudUser.swift */; };
@@ -59,6 +63,10 @@
 		39630161250AC5A600939CA9 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 		39630163250AE79F00939CA9 /* AddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendView.swift; sourceTree = "<group>"; };
 		398C6C21250320B5002AC72A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		399FBB692512F54F00C9096B /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		399FBB6E2512F5E000C9096B /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		399FBB732512F6B000C9096B /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		399FBB782513075100C9096B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		39B371502508336800C6C172 /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		39B371522508344100C6C172 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirestoreService.swift; path = /Users/lynk/Desktop/Shroud/Shroud/FirestoreService.swift; sourceTree = "<absolute>"; };
 		39B37156250834E600C6C172 /* ShroudUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ShroudUser.swift; path = /Users/lynk/Desktop/Shroud/Shroud/ShroudUser.swift; sourceTree = "<absolute>"; };
@@ -119,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				39B37156250834E600C6C172 /* ShroudUser.swift */,
+				399FBB782513075100C9096B /* Extensions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -140,6 +149,8 @@
 				39630163250AE79F00939CA9 /* AddFriendView.swift */,
 				39BDD54A2509C49200223D98 /* FriendListView.swift */,
 				3963015F250AA61900939CA9 /* FriendListCell.swift */,
+				399FBB6E2512F5E000C9096B /* MessageView.swift */,
+				399FBB732512F6B000C9096B /* MessageCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -149,6 +160,7 @@
 			children = (
 				39488D2A2506D3A80014ACB9 /* SignUpViewController.swift */,
 				39BDD54C2509C4A700223D98 /* FriendListViewController.swift */,
+				399FBB692512F54F00C9096B /* MessageViewController.swift */,
 				39630161250AC5A600939CA9 /* AddFriendViewController.swift */,
 				398C6C21250320B5002AC72A /* SignInViewController.swift */,
 				39BDD54E2509C5DB00223D98 /* MainControllers.swift */,
@@ -480,16 +492,20 @@
 				39B371512508336800C6C172 /* FirebaseAuthService.swift in Sources */,
 				39630164250AE79F00939CA9 /* AddFriendView.swift in Sources */,
 				39D54AE124FEDCE000EB47B1 /* AppDelegate.swift in Sources */,
+				399FBB6F2512F5E000C9096B /* MessageView.swift in Sources */,
 				393C68E625030B09003B6849 /* SignInView.swift in Sources */,
+				399FBB792513075100C9096B /* Extensions.swift in Sources */,
 				398C6C22250320B5002AC72A /* SignInViewController.swift in Sources */,
 				39BDD54B2509C49200223D98 /* FriendListView.swift in Sources */,
 				39D54AE324FEDCE000EB47B1 /* SceneDelegate.swift in Sources */,
 				39630162250AC5A600939CA9 /* AddFriendViewController.swift in Sources */,
+				399FBB6A2512F54F00C9096B /* MessageViewController.swift in Sources */,
 				39630160250AA61900939CA9 /* FriendListCell.swift in Sources */,
 				39B371532508344100C6C172 /* FirestoreService.swift in Sources */,
 				39B37157250834E600C6C172 /* ShroudUser.swift in Sources */,
 				39488D2D2506D3C00014ACB9 /* SignUpView.swift in Sources */,
 				39488D2B2506D3A80014ACB9 /* SignUpViewController.swift in Sources */,
+				399FBB742512F6B000C9096B /* MessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
