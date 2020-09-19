@@ -10,6 +10,15 @@ import UIKit
 
 class FriendListView: UIView {
     
+    lazy var friendListTableView: UITableView = {
+        let tv = UITableView()
+        tv.register(FriendListCell.self, forCellReuseIdentifier:
+            "FriendCell")
+        tv.backgroundColor = .black
+        //tv.separatorColor = .lightGray
+        tv.separatorInset = UIEdgeInsets.zero
+        return tv
+    }()
     
     
     override init(frame: CGRect) {
@@ -24,6 +33,17 @@ class FriendListView: UIView {
     
     private func commonInit() {
         backgroundColor = .black
+        addFriendList()
     }
+    
+    private func addFriendList() {
+        friendListTableView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(friendListTableView)
+        friendListTableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
+        friendListTableView.leadingAnchor.constraint(equalTo:leadingAnchor).isActive = true
+        friendListTableView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+    }
+    
+    
     
 }

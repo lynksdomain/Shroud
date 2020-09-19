@@ -14,10 +14,10 @@ class MainControllers: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let friend = FriendListViewController()
-        friend.title = "Shroud"
-        let friendNav = UINavigationController(rootViewController:friend )
-        friendNav.title = "Friends"
-        viewControllers = [friendNav]
+//        friend.title = "Shroud"
+//        let friendNav = UINavigationController(rootViewController:friend )
+//        friendNav.title = "Friends"
+        viewControllers = [friend]
         self.tabBar.barTintColor = ShroudColors.darkGray
         self.tabBar.tintColor = .white
         self.tabBar.isTranslucent = false

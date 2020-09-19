@@ -46,6 +46,9 @@ class SignInView: UIView {
     lazy var emailTextField: UITextField = {
         var tf = CustomTextField()
         tf.placeholder = "Email"
+        tf.autocapitalizationType = .none
+        tf.autocorrectionType = .no
+        tf.keyboardType = .emailAddress
         return tf
     }()
     
@@ -89,6 +92,7 @@ class SignInView: UIView {
         emailTextField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.75).isActive = true
         emailTextField.topAnchor.constraint(equalTo: shroudLogo.bottomAnchor, constant: 22).isActive = true
         emailTextField.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        
     }
     
     

@@ -18,7 +18,19 @@ struct ShroudUser {
         self.uid = user.uid
         self.username = username
     }
-
+    
+    init?(dictionary: [String: Any]) {
+        guard let email = dictionary["email"] as? String,
+              let uid = dictionary["uid"] as? String,
+              let username = dictionary["username"] as? String else { return nil }
+        
+        self.email = email
+        self.uid = uid
+        self.username = username
+    }
+    
+    
+    
     var fieldsDict: [String: Any] {
         return [
             "email": email ?? "",
