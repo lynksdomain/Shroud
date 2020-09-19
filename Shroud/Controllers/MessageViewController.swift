@@ -10,18 +10,51 @@ import UIKit
 
 class MessageViewController: UIViewController {
     
-    let messageView = MessageView()
+    lazy var messageView = MessageView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(messageView)
-        
+        setView()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name:UIResponder.keyboardWillShowNotification, object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name:UIResponder.keyboardWillHideNotification, object: nil);
     }
   
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else { return }
+        let keyboardFrame: CGRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+
+        UIView.animate(withDuration: 0.1, animations: { () -> Void in
+            self.messageView.bottomConstraint.constant = -(keyboardFrame.size.height + 20)
+            self.view.layoutIfNeeded()
+            })
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        
+        UIView.animate(withDuration: 0.1, animations: { () -> Void in
+            self.messageView.bottomConstraint.constant = 0
+            self.view.layoutIfNeeded()
+            })
+    }
+    
+    
+    func setView() {
+        messageView.translatesAutoresizingMaskIntoConstraints = false
+        messageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        messageView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        messageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        messageView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+
+    }
+    
+    
     override func viewDidLayoutSubviews() {
         messageView.setNeedsLayout()
         messageView.layoutIfNeeded()
-        messageView.inputTextView.addBorder(toSide: .Top, withColor: UIColor.lightGray.withAlphaComponent(0.5).cgColor, andThickness: 0.3)
+        messageView.inputContainer.addBorder(toSide: .Top, withColor: UIColor.lightGray.withAlphaComponent(0.5).cgColor, andThickness: 0.3)
+
+       
     }
     /*
     // MARK: - Navigation
