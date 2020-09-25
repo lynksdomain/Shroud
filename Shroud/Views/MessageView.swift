@@ -8,14 +8,20 @@
 
 import UIKit
 
+protocol MessageViewDelegate: AnyObject {
+    func sendPressed(message: String)
+}
 
 class MessageView: UIView {
    
+    weak var delegate: MessageViewDelegate?
+    
     lazy var messageTableView: UITableView = {
         let tv = UITableView()
         tv.separatorStyle = .none
         tv.backgroundColor = .black
         tv.register(MessageCell.self, forCellReuseIdentifier: "msgCell")
+        tv.keyboardDismissMode = .onDrag
         return tv
     }()
     
@@ -124,6 +130,7 @@ class MessageView: UIView {
     
     
     @objc private func sendPressed() {
-        inputTextView.resignFirstResponder()
+        delegate?.sendPressed(message: inputTextView.text)
+        inputTextView.text = nil
     }
 }

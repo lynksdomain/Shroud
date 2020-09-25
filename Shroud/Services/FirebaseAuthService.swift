@@ -85,6 +85,7 @@ class FirebaseAuthService {
     var currentUser: User? {
         return firebaseAuth.currentUser
     }
+    
 
 
     private let firebaseAuth = Auth.auth()

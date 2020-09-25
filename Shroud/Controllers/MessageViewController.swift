@@ -10,15 +10,51 @@ import UIKit
 
 class MessageViewController: UIViewController {
     
+    var friendUID: String!
     lazy var messageView = MessageView()
-
+    
+    var messages = [Message]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.messageView.messageTableView.reloadData()
+            }
+        }
+    }
+    
+    init(friendUID: String) {
+        super.init(nibName: nil, bundle: nil)
+        self.friendUID = friendUID
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        self.friendUID = ""
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        messageView.delegate = self
+        messageView.messageTableView.dataSource = self
         view.addSubview(messageView)
         setView()
+        getMessage()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name:UIResponder.keyboardWillShowNotification, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name:UIResponder.keyboardWillHideNotification, object: nil);
     }
+    
+    
+    private func getMessage() {
+        FirestoreService.manager.fetchConversation(friendUID: friendUID) { (result) in
+            switch result {
+            case let .failure(error):
+                print(error)
+            case let .success(messages):
+                self.messages = messages
+            }
+        }
+    }
+    
   
     @objc func keyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo else { return }
@@ -56,14 +92,32 @@ class MessageViewController: UIViewController {
 
        
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+}
+
+extension MessageViewController: MessageViewDelegate {
+    func sendPressed(message: String) {
+        guard message.count > 0 else { return }
+        
     }
-    */
+}
 
+
+extension MessageViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        let msg = messages[indexPath.row].message
+        cell.textLabel?.text = msg
+        cell.textLabel?.textColor = .white
+        cell.backgroundColor = .black
+        return cell
+    }
+    
+    
+    
+    
 }

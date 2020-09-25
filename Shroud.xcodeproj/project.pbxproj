@@ -15,6 +15,7 @@
 		39630162250AC5A600939CA9 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39630161250AC5A600939CA9 /* AddFriendViewController.swift */; };
 		39630164250AE79F00939CA9 /* AddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39630163250AE79F00939CA9 /* AddFriendView.swift */; };
 		398C6C22250320B5002AC72A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398C6C21250320B5002AC72A /* SignInViewController.swift */; };
+		398FA034251A85D1009762BD /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398FA033251A85D1009762BD /* Message.swift */; };
 		399FBB6A2512F54F00C9096B /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399FBB692512F54F00C9096B /* MessageViewController.swift */; };
 		399FBB6F2512F5E000C9096B /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399FBB6E2512F5E000C9096B /* MessageView.swift */; };
 		399FBB742512F6B000C9096B /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399FBB732512F6B000C9096B /* MessageCell.swift */; };
@@ -64,6 +65,7 @@
 		39630161250AC5A600939CA9 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 		39630163250AE79F00939CA9 /* AddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendView.swift; sourceTree = "<group>"; };
 		398C6C21250320B5002AC72A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		398FA033251A85D1009762BD /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		399FBB692512F54F00C9096B /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		399FBB6E2512F5E000C9096B /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		399FBB732512F6B000C9096B /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			children = (
 				39B37156250834E600C6C172 /* ShroudUser.swift */,
 				399FBB782513075100C9096B /* Extensions.swift */,
+				398FA033251A85D1009762BD /* Message.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				39630164250AE79F00939CA9 /* AddFriendView.swift in Sources */,
 				39D54AE124FEDCE000EB47B1 /* AppDelegate.swift in Sources */,
 				399FBB6F2512F5E000C9096B /* MessageView.swift in Sources */,
+				398FA034251A85D1009762BD /* Message.swift in Sources */,
 				393C68E625030B09003B6849 /* SignInView.swift in Sources */,
 				399FBB792513075100C9096B /* Extensions.swift in Sources */,
 				398C6C22250320B5002AC72A /* SignInViewController.swift in Sources */,
