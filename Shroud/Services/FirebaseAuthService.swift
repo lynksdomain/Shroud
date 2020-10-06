@@ -81,6 +81,14 @@ class FirebaseAuthService {
         
     }
 
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+        print(error)
+        }
+    }
+    
 
     var currentUser: User? {
         return firebaseAuth.currentUser

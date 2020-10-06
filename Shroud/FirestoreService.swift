@@ -199,7 +199,27 @@ class FirestoreService {
         }
     }
     
+    func sendMessage(_ friendUID: String, _ message: Message, _ onCompletion: @escaping (Result<Void,Error>) -> Void) {
+        let batch = db.batch()
+        guard let current = FirebaseAuthService.manager.currentUser else {
+            onCompletion(.failure(GenericError.unknown))
+            return
+        }
+        let currentRef = db.collection("users").document("\(current.uid)").collection("messages").document()
+        let friendRef = db.collection("users").document("\(friendUID)").collection("messages").document()
+        batch.setData(message.fieldsDict, forDocument: currentRef)
+        batch.setData(message.fieldsDict, forDocument: friendRef)
+        
+        batch.commit { (error) in
+            if let error = error {
+                onCompletion(.failure(error))
+            } else {
+                onCompletion(.success(()))
+            }
+        }
+        
+    }
+    
 }
-
 
 

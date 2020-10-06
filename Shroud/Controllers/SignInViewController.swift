@@ -8,17 +8,23 @@
 
 import UIKit
 
+protocol SignInViewControllerDelegate: AnyObject {
+    func newUserCreated()
+}
+
 class SignInViewController: UIViewController {
     let signInView = SignInView()
-
+    weak var delegate: SignInViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(signInView)
         signInView.delegate = self
     }
     
-
 }
+
+
 
 extension SignInViewController: SignInDelegate {
     func logInPressed(email: String?, password: String?) {
@@ -42,8 +48,17 @@ extension SignInViewController: SignInDelegate {
     
     
     func signUpPressed() {
-        present(SignUpViewController(), animated: true, completion: nil)
+        let signUp = SignUpViewController()
+        signUp.modalTransitionStyle = .crossDissolve
+        signUp.modalPresentationStyle = .fullScreen
+        signUp.delegate = self
+        present(signUp, animated: true, completion: nil)
     }
-    
-    
+}
+
+
+extension SignInViewController: SignUpViewControllerDelegate {
+    func newUserCreated() {
+        delegate?.newUserCreated()
+    }
 }

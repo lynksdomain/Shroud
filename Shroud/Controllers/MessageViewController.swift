@@ -11,19 +11,25 @@ import UIKit
 class MessageViewController: UIViewController {
     
     var friendUID: String!
+    var friendUN: String!
+    var currentUN: String!
     lazy var messageView = MessageView()
+    var messageFormatter = MessageFormatter()
     
     var messages = [Message]() {
         didSet {
+            updateMessages()
             DispatchQueue.main.async {
                 self.messageView.messageTableView.reloadData()
             }
         }
     }
     
-    init(friendUID: String) {
+    init(friendUID: String, friendUN: String, currentUN: String) {
         super.init(nibName: nil, bundle: nil)
         self.friendUID = friendUID
+        self.friendUN = friendUN
+        self.currentUN = currentUN
     }
     
     required init?(coder: NSCoder) {
@@ -43,14 +49,20 @@ class MessageViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name:UIResponder.keyboardWillHideNotification, object: nil);
     }
     
+    private func updateMessages() {
+        FirestoreService.manager.updateUnreadMessage(friendUID: friendUID) { (result) in
+            
+        }
+    }
+    
     
     private func getMessage() {
-        FirestoreService.manager.fetchConversation(friendUID: friendUID) { (result) in
+        FirestoreService.manager.fetchConversation(friendUID: friendUID) {[weak self] (result) in
             switch result {
             case let .failure(error):
                 print(error)
             case let .success(messages):
-                self.messages = messages
+                self?.messages = messages
             }
         }
     }
@@ -97,8 +109,16 @@ class MessageViewController: UIViewController {
 
 extension MessageViewController: MessageViewDelegate {
     func sendPressed(message: String) {
-        guard message.count > 0 else { return }
-        
+        guard message.count > 0,
+              let message = messageFormatter.createMessage(message, friendUID) else { return }
+        FirestoreService.manager.sendMessage(friendUID, message) { (result) in
+            switch result {
+            case let .failure(error):
+                print(error)
+            case .success():
+                print("message sent")
+            }
+        }
     }
 }
 
@@ -110,10 +130,35 @@ extension MessageViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        let msg = messages[indexPath.row].message
-        cell.textLabel?.text = msg
-        cell.textLabel?.textColor = .white
+        cell.selectionStyle = .none
+        let messageItem = messages[indexPath.row]
+        var attributes: [NSAttributedString.Key: Any] = [:]
+        let msgAttributes: [NSAttributedString.Key: Any] = [.foregroundColor:UIColor.white, .font: UIFont.systemFont(ofSize: 15)]
+        if messageItem.authorUID == friendUID {
+            attributes = [.foregroundColor:UIColor.red, .font: UIFont.boldSystemFont(ofSize: 15)]
+            if let friendUN = friendUN {
+            let fullMsg = NSMutableAttributedString(string: "\(friendUN): \(messageItem.message)")
+            let userRange = (fullMsg.string as NSString).range(of:"\(friendUN):")
+            let messageRange = (fullMsg.string as NSString).range(of: messageItem.message)
+            fullMsg.setAttributes(attributes, range: userRange)
+            fullMsg.setAttributes(msgAttributes, range: messageRange)
+            cell.textLabel?.attributedText = fullMsg
+            }
+        }else {
+            attributes = [.foregroundColor:UIColor.systemBlue, .font: UIFont.boldSystemFont(ofSize: 15)]
+            if let currentUN = currentUN {
+            let fullMsg = NSMutableAttributedString(string: "\(currentUN): \(messageItem.message)")
+            let userRange = (fullMsg.string as NSString).range(of:"\(currentUN):")
+            let messageRange = (fullMsg.string as NSString).range(of: messageItem.message)
+            fullMsg.setAttributes(attributes, range: userRange)
+            fullMsg.setAttributes(msgAttributes, range: messageRange)
+            cell.textLabel?.attributedText = fullMsg
+            }
+        }
+        
         cell.backgroundColor = .black
+        
+        
         return cell
     }
     

@@ -10,6 +10,7 @@ import UIKit
 
 class FriendListViewController: UIViewController {
 
+    private var currentUser: ShroudUser?
     private var loaded = false
     private var friendListView = FriendListView()
     private var friends = [ShroudUser]() {
@@ -40,6 +41,7 @@ class FriendListViewController: UIViewController {
         navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFriend))
         navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
             getFriends()
+            getUser()
             loaded.toggle()
             return
         }
@@ -68,6 +70,16 @@ class FriendListViewController: UIViewController {
         
     }
     
+    func getUser() {
+        FirestoreService.manager.getCurrentShroudUser { (result) in
+            switch result {
+            case let .failure(error):
+                print(error)
+            case let .success(user):
+                self.currentUser = user
+            }
+        }
+    }
     
     func getMessages() {
         FirestoreService.manager.fetchUnreadMessages { (result) in
@@ -113,13 +125,25 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let currentUser = currentUser else {return}
         let user = friends[indexPath.row]
         if update.contains(user.uid) {
             FirestoreService.manager.updateUnreadMessage(friendUID: user.uid) { (result) in
             }
         }
-            let msgView = MessageViewController(friendUID: user.uid)
+        let msgView = MessageViewController(friendUID: user.uid, friendUN: user.username, currentUN: currentUser.username)
             navigationController?.pushViewController(msgView, animated: true)
+    }
+    
+}
+
+
+
+extension FriendListViewController: SignInViewControllerDelegate {
+    func newUserCreated() {
+        getFriends()
+        getUser()
+        dismiss(animated: true, completion: nil)
     }
     
 }
