@@ -21,7 +21,7 @@ class UserMsgCell: MessageCell {
     }
     
     private func commonInit() {
-        senderLabel.textColor = .blue
+        senderLabel.textColor = ShroudColors.userBlue
         senderLabel.textAlignment = .right
         messageLabel.textAlignment = .right
         setConstraints()

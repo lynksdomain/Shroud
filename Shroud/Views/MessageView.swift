@@ -9,11 +9,12 @@
 import UIKit
 
 protocol MessageViewDelegate: AnyObject {
-    func sendPressed(message: String)
+    func sendPressed(message: Message)
 }
 
 class MessageView: UIView {
    
+    let messageFormatter = MessageFormatter()
     weak var delegate: MessageViewDelegate?
     
     lazy var messageTableView: UITableView = {
@@ -76,10 +77,95 @@ class MessageView: UIView {
         addInputView()
         addMessageView()
         backgroundColor = .black
+        addActionsToButtons()
     }
     
     
     
+    private func addActionsToButtons() {
+        editingView.boldText.addTarget(self, action: #selector(boldSelected), for: .touchUpInside)
+        editingView.lightText.addTarget(self, action: #selector(lightSelected), for: .touchUpInside)
+        editingView.whiteText.addTarget(self, action: #selector(whiteSelected), for: .touchUpInside)
+        editingView.redText.addTarget(self, action: #selector(redSelected), for: .touchUpInside)
+        editingView.smallText.addTarget(self, action: #selector(smallSelected), for: .touchUpInside)
+        editingView.largeText.addTarget(self, action: #selector(largeSelected), for: .touchUpInside)
+    }
+    
+     func setFriendUID(_ friendUID: String) {
+        messageFormatter.setFriend(friendUID)
+    }
+    
+    
+    @objc private func whiteSelected() {
+        if editingView.whiteText.isSelected {
+            messageFormatter.setWhiteText()
+        } else {
+            editingView.whiteText.isSelected.toggle()
+            messageFormatter.setWhiteText()
+        }
+        messageFormatter.updateInput(inputTextView)
+        editingView.redText.isSelected = false
+    }
+    
+    
+    
+    
+    @objc private func redSelected() {
+        if editingView.redText.isSelected {
+            messageFormatter.setRedText()
+        } else {
+            editingView.redText.isSelected.toggle()
+            messageFormatter.setRedText()
+        }
+        messageFormatter.updateInput(inputTextView)
+        editingView.whiteText.isSelected = false
+    }
+    
+    
+    
+    @objc private func smallSelected() {
+        editingView.smallText.isSelected.toggle()
+        if editingView.smallText.isSelected {
+            messageFormatter.setSmallText()
+        } else {
+            messageFormatter.setDefaultTextSize()
+        }
+        messageFormatter.updateInput(inputTextView)
+        editingView.largeText.isSelected = false
+    }
+    
+    @objc private func largeSelected() {
+        editingView.largeText.isSelected.toggle()
+        if editingView.largeText.isSelected {
+            messageFormatter.setLargeText()
+        } else {
+            messageFormatter.setDefaultTextSize()
+        }
+        messageFormatter.updateInput(inputTextView)
+        editingView.smallText.isSelected = false
+    }
+    
+    @objc private func boldSelected() {
+        editingView.boldText.isSelected.toggle()
+        if editingView.boldText.isSelected {
+            messageFormatter.setBoldText()
+        } else {
+            messageFormatter.setRegText()
+        }
+        messageFormatter.updateInput(inputTextView)
+        editingView.lightText.isSelected = false
+    }
+    
+    @objc private func lightSelected() {
+        editingView.lightText.isSelected.toggle()
+        if editingView.lightText.isSelected {
+            messageFormatter.setLightText()
+        } else {
+            messageFormatter.setRegText()
+        }
+        messageFormatter.updateInput(inputTextView)
+        editingView.boldText.isSelected = false
+    }
     
     private func addEditView() {
         editingView.translatesAutoresizingMaskIntoConstraints = false
@@ -130,8 +216,11 @@ class MessageView: UIView {
     }
     
     
+    
     @objc private func sendPressed() {
-        delegate?.sendPressed(message: inputTextView.text)
+        guard inputTextView.text.count > 0,
+              let messageItem = messageFormatter.createMessage(inputTextView.text) else { return }
+        delegate?.sendPressed(message: messageItem)
         inputTextView.text = nil
     }
 }

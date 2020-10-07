@@ -31,6 +31,7 @@ class MessageViewController: UIViewController {
         self.friendUID = friendUID
         self.friendUN = friendUN
         self.currentUN = currentUN
+        messageView.setFriendUID(friendUID)
     }
     
     required init?(coder: NSCoder) {
@@ -116,9 +117,7 @@ class MessageViewController: UIViewController {
 }
 
 extension MessageViewController: MessageViewDelegate {
-    func sendPressed(message: String) {
-        guard message.count > 0,
-              let message = messageFormatter.createMessage(message, friendUID) else { return }
+    func sendPressed(message: Message) {
         FirestoreService.manager.sendMessage(friendUID, message) { (result) in
             switch result {
             case let .failure(error):

@@ -22,7 +22,7 @@ class FriendMsgCell: MessageCell {
     }
     
     private func commonInit() {
-        senderLabel.textColor = .red
+        senderLabel.textColor = ShroudColors.friendRed
         senderLabel.textAlignment = .left
         messageLabel.textAlignment = .left
         setConstraints()

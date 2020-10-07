@@ -8,10 +8,6 @@
 
 import UIKit
 
-enum MessageCellType {
-    case user, friend
-}
-
 class MessageCell: UITableViewCell {
     
     lazy var senderLabel: UILabel = {
