@@ -14,6 +14,8 @@
 		39630160250AA61900939CA9 /* FriendListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963015F250AA61900939CA9 /* FriendListCell.swift */; };
 		39630162250AC5A600939CA9 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39630161250AC5A600939CA9 /* AddFriendViewController.swift */; };
 		39630164250AE79F00939CA9 /* AddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39630163250AE79F00939CA9 /* AddFriendView.swift */; };
+		3963BF59252E1B7900D503B1 /* FriendMsgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963BF58252E1B7900D503B1 /* FriendMsgCell.swift */; };
+		3963BF5E252E1C3800D503B1 /* UserMsgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3963BF5D252E1C3800D503B1 /* UserMsgCell.swift */; };
 		397D7484251ECD9B00521810 /* MessageFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397D7483251ECD9B00521810 /* MessageFormatter.swift */; };
 		398C6C22250320B5002AC72A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398C6C21250320B5002AC72A /* SignInViewController.swift */; };
 		398FA034251A85D1009762BD /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398FA033251A85D1009762BD /* Message.swift */; };
@@ -65,6 +67,8 @@
 		3963015F250AA61900939CA9 /* FriendListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListCell.swift; sourceTree = "<group>"; };
 		39630161250AC5A600939CA9 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 		39630163250AE79F00939CA9 /* AddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendView.swift; sourceTree = "<group>"; };
+		3963BF58252E1B7900D503B1 /* FriendMsgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendMsgCell.swift; sourceTree = "<group>"; };
+		3963BF5D252E1C3800D503B1 /* UserMsgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMsgCell.swift; sourceTree = "<group>"; };
 		397D7483251ECD9B00521810 /* MessageFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageFormatter.swift; sourceTree = "<group>"; };
 		398C6C21250320B5002AC72A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		398FA033251A85D1009762BD /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 				399FBB6E2512F5E000C9096B /* MessageView.swift */,
 				39C2D0722515920F00E15A25 /* EditingView.swift */,
 				399FBB732512F6B000C9096B /* MessageCell.swift */,
+				3963BF58252E1B7900D503B1 /* FriendMsgCell.swift */,
+				3963BF5D252E1C3800D503B1 /* UserMsgCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -505,6 +511,7 @@
 				398FA034251A85D1009762BD /* Message.swift in Sources */,
 				393C68E625030B09003B6849 /* SignInView.swift in Sources */,
 				399FBB792513075100C9096B /* Extensions.swift in Sources */,
+				3963BF59252E1B7900D503B1 /* FriendMsgCell.swift in Sources */,
 				398C6C22250320B5002AC72A /* SignInViewController.swift in Sources */,
 				39BDD54B2509C49200223D98 /* FriendListView.swift in Sources */,
 				39D54AE324FEDCE000EB47B1 /* SceneDelegate.swift in Sources */,
@@ -513,6 +520,7 @@
 				39630160250AA61900939CA9 /* FriendListCell.swift in Sources */,
 				39B371532508344100C6C172 /* FirestoreService.swift in Sources */,
 				39C2D0732515920F00E15A25 /* EditingView.swift in Sources */,
+				3963BF5E252E1C3800D503B1 /* UserMsgCell.swift in Sources */,
 				39B37157250834E600C6C172 /* ShroudUser.swift in Sources */,
 				397D7484251ECD9B00521810 /* MessageFormatter.swift in Sources */,
 				39488D2D2506D3C00014ACB9 /* SignUpView.swift in Sources */,

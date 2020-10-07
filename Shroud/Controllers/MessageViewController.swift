@@ -21,6 +21,7 @@ class MessageViewController: UIViewController {
             updateMessages()
             DispatchQueue.main.async {
                 self.messageView.messageTableView.reloadData()
+                self.scrollToBottom()
             }
         }
     }
@@ -49,6 +50,12 @@ class MessageViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name:UIResponder.keyboardWillHideNotification, object: nil);
     }
     
+    private func scrollToBottom() {
+        if self.messages.count > 0 {
+            self.messageView.messageTableView.scrollToRow(at: IndexPath(row: self.messages.count - 1, section: 0), at: .bottom, animated: false)
+        }
+    }
+    
     private func updateMessages() {
         FirestoreService.manager.updateUnreadMessage(friendUID: friendUID) { (result) in
             
@@ -75,6 +82,7 @@ class MessageViewController: UIViewController {
         UIView.animate(withDuration: 0.1, animations: { () -> Void in
             self.messageView.bottomConstraint.constant = -(keyboardFrame.size.height + 20)
             self.view.layoutIfNeeded()
+            self.scrollToBottom()
             })
     }
     
@@ -129,37 +137,18 @@ extension MessageViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.selectionStyle = .none
         let messageItem = messages[indexPath.row]
-        var attributes: [NSAttributedString.Key: Any] = [:]
-        let msgAttributes: [NSAttributedString.Key: Any] = [.foregroundColor:UIColor.white, .font: UIFont.systemFont(ofSize: 15)]
-        if messageItem.authorUID == friendUID {
-            attributes = [.foregroundColor:UIColor.red, .font: UIFont.boldSystemFont(ofSize: 15)]
-            if let friendUN = friendUN {
-            let fullMsg = NSMutableAttributedString(string: "\(friendUN): \(messageItem.message)")
-            let userRange = (fullMsg.string as NSString).range(of:"\(friendUN):")
-            let messageRange = (fullMsg.string as NSString).range(of: messageItem.message)
-            fullMsg.setAttributes(attributes, range: userRange)
-            fullMsg.setAttributes(msgAttributes, range: messageRange)
-            cell.textLabel?.attributedText = fullMsg
-            }
-        }else {
-            attributes = [.foregroundColor:UIColor.systemBlue, .font: UIFont.boldSystemFont(ofSize: 15)]
-            if let currentUN = currentUN {
-            let fullMsg = NSMutableAttributedString(string: "\(currentUN): \(messageItem.message)")
-            let userRange = (fullMsg.string as NSString).range(of:"\(currentUN):")
-            let messageRange = (fullMsg.string as NSString).range(of: messageItem.message)
-            fullMsg.setAttributes(attributes, range: userRange)
-            fullMsg.setAttributes(msgAttributes, range: messageRange)
-            cell.textLabel?.attributedText = fullMsg
-            }
+        if friendUID == messageItem.authorUID {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendCell", for: indexPath) as? FriendMsgCell,
+              let friendUN = friendUN else { return UITableViewCell() }
+            cell.setFormatting(message: messageItem, sender: friendUN)
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as? UserMsgCell,
+                  let currentUN = currentUN else { return UITableViewCell() }
+                cell.setFormatting(message: messageItem, sender: currentUN)
+                return cell
         }
-        
-        cell.backgroundColor = .black
-        
-        
-        return cell
     }
     
     

@@ -20,7 +20,8 @@ class MessageView: UIView {
         let tv = UITableView()
         tv.separatorStyle = .none
         tv.backgroundColor = .black
-        tv.register(MessageCell.self, forCellReuseIdentifier: "msgCell")
+        tv.register(FriendMsgCell.self, forCellReuseIdentifier: "friendCell")
+        tv.register(UserMsgCell.self, forCellReuseIdentifier: "userCell")
         tv.keyboardDismissMode = .onDrag
         return tv
     }()
