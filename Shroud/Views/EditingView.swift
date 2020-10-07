@@ -12,26 +12,33 @@ import UIKit
 
 class EditingView: UIView {
     lazy var boldText: UIButton = {
-        let button = UIButton()
-        button.tintColor = .white
+        let button = UIButton(type: .custom)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 19, weight: .bold)
         button.setTitle("B", for: .normal)
+        button.setTitleColor(.white, for: .selected)
+        button.setTitleColor(.gray, for: .normal)
         return button
     }()
     
+    
+    
     lazy var lightText: UIButton = {
         let button = UIButton()
-        button.tintColor = .white
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 19, weight: .ultraLight)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 19, weight: .light)
         button.setTitle("L", for: .normal)
+        button.setTitleColor(.white, for: .selected)
+        button.setTitleColor(.gray, for: .normal)
         return button
     }()
+    
     
     
     lazy var redText: UIButton = {
         let button = UIButton()
         button.setAttributedTitle( NSAttributedString(string: "A", attributes:
-                                                        [.underlineStyle: NSUnderlineStyle.single.rawValue]) , for: .normal)
+                                                        [.underlineStyle: NSUnderlineStyle.single.rawValue]) , for: .selected)
+        button.setAttributedTitle( NSAttributedString(string: "A", attributes:
+                                                        [:]) , for: .normal)
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 3, right: 0)
         button.setTitleColor(.red, for: .normal)
         return button
@@ -39,8 +46,11 @@ class EditingView: UIView {
     
     lazy var whiteText: UIButton = {
         let button = UIButton()
+        button.isSelected = true
         button.setAttributedTitle( NSAttributedString(string: "A", attributes:
-                                                        [.underlineStyle: NSUnderlineStyle.single.rawValue]) , for: .normal)
+                                                        [.underlineStyle: NSUnderlineStyle.single.rawValue]) , for: .selected)
+        button.setAttributedTitle( NSAttributedString(string: "A", attributes:
+                                                        [:]) , for: .normal)
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 3, right: 0)
 
         button.setTitleColor(.white, for: .normal)
@@ -51,6 +61,8 @@ class EditingView: UIView {
         let button = UIButton()
         button.setTitle("T", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        button.setTitleColor(.white, for: .selected)
+        button.setTitleColor(.gray, for: .normal)
         return button
     }()
     
@@ -58,6 +70,8 @@ class EditingView: UIView {
         let button = UIButton()
         button.setTitle("T", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        button.setTitleColor(.white, for: .selected)
+        button.setTitleColor(.gray, for: .normal)
         return button
     }()
  
@@ -90,7 +104,6 @@ class EditingView: UIView {
         stack.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         stack.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         stack.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        
 
     }
 }

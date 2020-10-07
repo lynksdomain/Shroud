@@ -9,11 +9,11 @@
 import UIKit
 
 class MainControllers: UITabBarController {
-
+    let friend = FriendListViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let friend = FriendListViewController()
+        
 //        friend.title = "Shroud"
 //        let friendNav = UINavigationController(rootViewController:friend )
 //        friendNav.title = "Friends"
@@ -23,6 +23,8 @@ class MainControllers: UITabBarController {
         self.tabBar.isTranslucent = false
         
     }
-     
+    func setDelegateToFriendList(_ vc: SignInViewController) {
+        vc.delegate = friend
+    }
 
 }

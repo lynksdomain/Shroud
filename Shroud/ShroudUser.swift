@@ -39,9 +39,3 @@ struct ShroudUser {
         ]
     }
 }
-
-
-
-struct ShroudColors {
-   static let darkGray = UIColor(displayP3Red: 25/255, green: 25/255, blue: 25/255, alpha: 1)
-}

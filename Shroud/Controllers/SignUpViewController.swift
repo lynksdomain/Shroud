@@ -8,10 +8,14 @@
 
 import UIKit
 
+protocol SignUpViewControllerDelegate: AnyObject {
+    func newUserCreated()
+}
 
 
 class SignUpViewController: UIViewController {
     
+    weak var delegate: SignUpViewControllerDelegate?
     var signUpView = SignUpView()
     
     override func viewDidLoad() {
@@ -37,7 +41,6 @@ extension SignUpViewController: SignUpViewDelegate {
             switch result {
             case let .success(user):
                 let shroudUser = ShroudUser(from: user, username: username)
-    
                 self?.userToFirestore(shroudUser)
             case let .failure(error):
                 self?.signUpView.showError(error: error.localizedDescription)
@@ -49,9 +52,9 @@ extension SignUpViewController: SignUpViewDelegate {
         FirestoreService.manager.create(user) { [weak self](result) in
             switch result {
             case .success():
-                print("done")
+                self?.delegate?.newUserCreated()
             case let .failure(error):
-                    self?.signUpView.showError(error: error.localizedDescription)
+                self?.signUpView.showError(error: error.localizedDescription)
             }
         }
     }

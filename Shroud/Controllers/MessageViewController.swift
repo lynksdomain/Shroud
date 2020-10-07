@@ -11,19 +11,27 @@ import UIKit
 class MessageViewController: UIViewController {
     
     var friendUID: String!
+    var friendUN: String!
+    var currentUN: String!
     lazy var messageView = MessageView()
+    var messageFormatter = MessageFormatter()
     
     var messages = [Message]() {
         didSet {
+            updateMessages()
             DispatchQueue.main.async {
                 self.messageView.messageTableView.reloadData()
+                self.scrollToBottom()
             }
         }
     }
     
-    init(friendUID: String) {
+    init(friendUID: String, friendUN: String, currentUN: String) {
         super.init(nibName: nil, bundle: nil)
         self.friendUID = friendUID
+        self.friendUN = friendUN
+        self.currentUN = currentUN
+        messageView.setFriendUID(friendUID)
     }
     
     required init?(coder: NSCoder) {
@@ -43,14 +51,26 @@ class MessageViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name:UIResponder.keyboardWillHideNotification, object: nil);
     }
     
+    private func scrollToBottom() {
+        if self.messages.count > 0 {
+            self.messageView.messageTableView.scrollToRow(at: IndexPath(row: self.messages.count - 1, section: 0), at: .bottom, animated: false)
+        }
+    }
+    
+    private func updateMessages() {
+        FirestoreService.manager.updateUnreadMessage(friendUID: friendUID) { (result) in
+            
+        }
+    }
+    
     
     private func getMessage() {
-        FirestoreService.manager.fetchConversation(friendUID: friendUID) { (result) in
+        FirestoreService.manager.fetchConversation(friendUID: friendUID) {[weak self] (result) in
             switch result {
             case let .failure(error):
                 print(error)
             case let .success(messages):
-                self.messages = messages
+                self?.messages = messages
             }
         }
     }
@@ -63,6 +83,7 @@ class MessageViewController: UIViewController {
         UIView.animate(withDuration: 0.1, animations: { () -> Void in
             self.messageView.bottomConstraint.constant = -(keyboardFrame.size.height + 20)
             self.view.layoutIfNeeded()
+            self.scrollToBottom()
             })
     }
     
@@ -96,9 +117,15 @@ class MessageViewController: UIViewController {
 }
 
 extension MessageViewController: MessageViewDelegate {
-    func sendPressed(message: String) {
-        guard message.count > 0 else { return }
-        
+    func sendPressed(message: Message) {
+        FirestoreService.manager.sendMessage(friendUID, message) { (result) in
+            switch result {
+            case let .failure(error):
+                print(error)
+            case .success():
+                print("message sent")
+            }
+        }
     }
 }
 
@@ -109,12 +136,18 @@ extension MessageViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        let msg = messages[indexPath.row].message
-        cell.textLabel?.text = msg
-        cell.textLabel?.textColor = .white
-        cell.backgroundColor = .black
-        return cell
+        let messageItem = messages[indexPath.row]
+        if friendUID == messageItem.authorUID {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendCell", for: indexPath) as? FriendMsgCell,
+              let friendUN = friendUN else { return UITableViewCell() }
+            cell.setFormatting(message: messageItem, sender: friendUN)
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as? UserMsgCell,
+                  let currentUN = currentUN else { return UITableViewCell() }
+                cell.setFormatting(message: messageItem, sender: currentUN)
+                return cell
+        }
     }
     
     

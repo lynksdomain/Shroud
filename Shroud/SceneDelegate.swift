@@ -18,17 +18,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
+        //FirebaseAuthService.manager.signOut()
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
-        
-        let main = UINavigationController(rootViewController: MainControllers())
+        let tab = MainControllers()
+        let main = UINavigationController(rootViewController: tab)
         //main.title = "Shroud"
         window?.rootViewController = main
         window?.makeKeyAndVisible()
         if FirebaseAuthService.manager.currentUser == nil {
         let sign = SignInViewController()
-        sign.modalPresentationStyle = .overCurrentContext
+        sign.modalPresentationStyle = .fullScreen
         sign.modalTransitionStyle = .crossDissolve
+        sign.modalPresentationCapturesStatusBarAppearance = true
+        tab.setDelegateToFriendList(sign)
         main.present(sign, animated: false, completion: nil)
         }
     }

@@ -65,4 +65,18 @@ struct Message {
         self.timestamp = timestamp
     }
     
+    
+    var fieldsDict: [String:Any] {
+        return [
+            "message":message,
+            "uid":authorUID,
+            "fontSize":fontSize.rawValue,
+            "fontColor":fontColor.rawValue,
+            "fontType":fontType.rawValue,
+            "users":users,
+            "read":read,
+            "timestamp":timestamp
+        ]
+    }
+    
 }
