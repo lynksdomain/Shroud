@@ -40,7 +40,7 @@ extension SignUpViewController: SignUpViewDelegate {
         FirebaseAuthService.manager.createNewUser(email, password, username) { [weak self](result) in
             switch result {
             case let .success(user):
-                let shroudUser = ShroudUser(from: user, username: username)
+                let shroudUser = ShroudUser(from: user, username: username, status: "No Status")
                 self?.userToFirestore(shroudUser)
             case let .failure(error):
                 self?.signUpView.showError(error: error.localizedDescription)

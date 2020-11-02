@@ -11,7 +11,7 @@ import UIKit
 class FriendListViewController: UIViewController {
 
     private var currentUser: ShroudUser?
-    private var loaded = false
+    //private var loaded = false
     private var friendListView = FriendListView()
     private var friends = [ShroudUser]() {
         didSet {
@@ -32,21 +32,20 @@ class FriendListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+        getFriends()
+        getUser()
     }
     
-    
-    override func viewWillAppear(_ animated: Bool) {
-        guard loaded else {
+    override func viewDidLayoutSubviews() {
         navigationController?.navigationBar.topItem?.title = "Shroud"
-        navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFriend))
+        navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.badge.plus"), style: .plain, target: self, action: #selector(addFriend))
         navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-            getFriends()
-            getUser()
-            loaded.toggle()
-            return
-        }
-
+        let profile = UIBarButtonItem(image: UIImage(systemName: "person")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(openProfile))
+        profile.tintColor = .white
+        navigationController?.navigationBar.topItem?.leftBarButtonItem = profile
     }
+    
+    
     
     private func setUp() {
         view.addSubview(friendListView)
@@ -71,12 +70,12 @@ class FriendListViewController: UIViewController {
     }
     
     func getUser() {
-        FirestoreService.manager.getCurrentShroudUser { (result) in
+        FirestoreService.manager.getCurrentShroudUser { [weak self] (result) in
             switch result {
             case let .failure(error):
                 print(error)
             case let .success(user):
-                self.currentUser = user
+                self?.currentUser = user
             }
         }
     }
@@ -97,6 +96,14 @@ class FriendListViewController: UIViewController {
         add.modalPresentationStyle = .overFullScreen
         present(add, animated: true, completion: nil)
     }
+    
+    @objc private func openProfile() {
+        guard let user = currentUser else { return }
+        let profile = ProfileViewController(user)
+        profile.modalTransitionStyle = .crossDissolve
+        profile.modalPresentationStyle = .overFullScreen
+        present(profile, animated: true, completion: nil)
+    }
 }
 
 
@@ -110,6 +117,8 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as? FriendListCell else { return UITableViewCell()}
         let user = friends[indexPath.row]
         cell.nameLabel.text = user.username
+        cell.statusLabel.text = user.status
+        
         if update.contains(user.uid) {
             cell.backgroundColor = .green
         } else {
@@ -119,10 +128,7 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
-    }
-    
+   
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let currentUser = currentUser else {return}
