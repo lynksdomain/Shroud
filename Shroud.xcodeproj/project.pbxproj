@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		390502AD2534C80200828B11 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390502AC2534C80200828B11 /* ProfileViewController.swift */; };
+		390502B2253672A000828B11 /* EditStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390502B1253672A000828B11 /* EditStatusView.swift */; };
+		390502B72536747700828B11 /* EditStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390502B62536747700828B11 /* EditStatusViewController.swift */; };
 		393C68E625030B09003B6849 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393C68E525030B09003B6849 /* SignInView.swift */; };
+		394280062534BE5400C93501 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394280052534BE5400C93501 /* ProfileView.swift */; };
+		3942800B2534BEB100C93501 /* ProgrammaticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3942800A2534BEB100C93501 /* ProgrammaticView.swift */; };
 		39488D2B2506D3A80014ACB9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39488D2A2506D3A80014ACB9 /* SignUpViewController.swift */; };
 		39488D2D2506D3C00014ACB9 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39488D2C2506D3C00014ACB9 /* SignUpView.swift */; };
 		395BB4E12502FD7800FB30B3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 395BB4E02502FD7800FB30B3 /* GoogleService-Info.plist */; };
@@ -20,6 +25,7 @@
 		397D7484251ECD9B00521810 /* MessageFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397D7483251ECD9B00521810 /* MessageFormatter.swift */; };
 		398C6C22250320B5002AC72A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398C6C21250320B5002AC72A /* SignInViewController.swift */; };
 		398FA034251A85D1009762BD /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398FA033251A85D1009762BD /* Message.swift */; };
+		3993CD44252F822500075DCB /* HeadingMsgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3993CD43252F822500075DCB /* HeadingMsgView.swift */; };
 		399FBB6A2512F54F00C9096B /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399FBB692512F54F00C9096B /* MessageViewController.swift */; };
 		399FBB6F2512F5E000C9096B /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399FBB6E2512F5E000C9096B /* MessageView.swift */; };
 		399FBB742512F6B000C9096B /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399FBB732512F6B000C9096B /* MessageCell.swift */; };
@@ -61,7 +67,12 @@
 
 /* Begin PBXFileReference section */
 		1B1BD052C595C1F41D98825B /* Pods-Shroud-ShroudUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shroud-ShroudUITests.release.xcconfig"; path = "Target Support Files/Pods-Shroud-ShroudUITests/Pods-Shroud-ShroudUITests.release.xcconfig"; sourceTree = "<group>"; };
+		390502AC2534C80200828B11 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		390502B1253672A000828B11 /* EditStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStatusView.swift; sourceTree = "<group>"; };
+		390502B62536747700828B11 /* EditStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStatusViewController.swift; sourceTree = "<group>"; };
 		393C68E525030B09003B6849 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		394280052534BE5400C93501 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		3942800A2534BEB100C93501 /* ProgrammaticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgrammaticView.swift; sourceTree = "<group>"; };
 		39488D2A2506D3A80014ACB9 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		39488D2C2506D3C00014ACB9 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		395BB4E02502FD7800FB30B3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = ".git/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -74,6 +85,7 @@
 		397D7483251ECD9B00521810 /* MessageFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageFormatter.swift; sourceTree = "<group>"; };
 		398C6C21250320B5002AC72A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		398FA033251A85D1009762BD /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		3993CD43252F822500075DCB /* HeadingMsgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingMsgView.swift; sourceTree = "<group>"; };
 		399FBB692512F54F00C9096B /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		399FBB6E2512F5E000C9096B /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		399FBB732512F6B000C9096B /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
@@ -135,6 +147,68 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39427FF92534BCC000C93501 /* FriendList */ = {
+			isa = PBXGroup;
+			children = (
+				39427FFB2534BCDC00C93501 /* Controllers */,
+				39427FFA2534BCD400C93501 /* Views */,
+			);
+			path = FriendList;
+			sourceTree = "<group>";
+		};
+		39427FFA2534BCD400C93501 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				39630163250AE79F00939CA9 /* AddFriendView.swift */,
+				39BDD54A2509C49200223D98 /* FriendListView.swift */,
+				3963015F250AA61900939CA9 /* FriendListCell.swift */,
+				394280052534BE5400C93501 /* ProfileView.swift */,
+				390502B1253672A000828B11 /* EditStatusView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		39427FFB2534BCDC00C93501 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				39BDD54C2509C4A700223D98 /* FriendListViewController.swift */,
+				39630161250AC5A600939CA9 /* AddFriendViewController.swift */,
+				390502AC2534C80200828B11 /* ProfileViewController.swift */,
+				390502B62536747700828B11 /* EditStatusViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		39427FFC2534BD4D00C93501 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				39427FFE2534BD6800C93501 /* Controllers */,
+				39427FFD2534BD5D00C93501 /* Views */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		39427FFD2534BD5D00C93501 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				399FBB6E2512F5E000C9096B /* MessageView.swift */,
+				3963BF58252E1B7900D503B1 /* FriendMsgCell.swift */,
+				3963BF5D252E1C3800D503B1 /* UserMsgCell.swift */,
+				39C2D0722515920F00E15A25 /* EditingView.swift */,
+				399FBB732512F6B000C9096B /* MessageCell.swift */,
+				3993CD43252F822500075DCB /* HeadingMsgView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		39427FFE2534BD6800C93501 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				399FBB692512F54F00C9096B /* MessageViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		39B371582508352800C6C172 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,16 +233,9 @@
 		39B3715B2508355E00C6C172 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3942800A2534BEB100C93501 /* ProgrammaticView.swift */,
 				393C68E525030B09003B6849 /* SignInView.swift */,
 				39488D2C2506D3C00014ACB9 /* SignUpView.swift */,
-				39630163250AE79F00939CA9 /* AddFriendView.swift */,
-				39BDD54A2509C49200223D98 /* FriendListView.swift */,
-				3963015F250AA61900939CA9 /* FriendListCell.swift */,
-				399FBB6E2512F5E000C9096B /* MessageView.swift */,
-				39C2D0722515920F00E15A25 /* EditingView.swift */,
-				399FBB732512F6B000C9096B /* MessageCell.swift */,
-				3963BF58252E1B7900D503B1 /* FriendMsgCell.swift */,
-				3963BF5D252E1C3800D503B1 /* UserMsgCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -177,9 +244,6 @@
 			isa = PBXGroup;
 			children = (
 				39488D2A2506D3A80014ACB9 /* SignUpViewController.swift */,
-				39BDD54C2509C4A700223D98 /* FriendListViewController.swift */,
-				399FBB692512F54F00C9096B /* MessageViewController.swift */,
-				39630161250AC5A600939CA9 /* AddFriendViewController.swift */,
 				398C6C21250320B5002AC72A /* SignInViewController.swift */,
 				39BDD54E2509C5DB00223D98 /* MainControllers.swift */,
 			);
@@ -211,8 +275,10 @@
 		39D54ADF24FEDCE000EB47B1 /* Shroud */ = {
 			isa = PBXGroup;
 			children = (
-				39B371582508352800C6C172 /* Models */,
 				39B3715A2508354400C6C172 /* Services */,
+				39B371582508352800C6C172 /* Models */,
+				39427FFC2534BD4D00C93501 /* Message */,
+				39427FF92534BCC000C93501 /* FriendList */,
 				39B3715B2508355E00C6C172 /* Views */,
 				39B3715C2508357100C6C172 /* Controllers */,
 				39D54AE924FEDCE200EB47B1 /* Assets.xcassets */,
@@ -506,6 +572,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				39BDD54F2509C5DB00223D98 /* MainControllers.swift in Sources */,
+				394280062534BE5400C93501 /* ProfileView.swift in Sources */,
+				3993CD44252F822500075DCB /* HeadingMsgView.swift in Sources */,
 				39BDD54D2509C4A700223D98 /* FriendListViewController.swift in Sources */,
 				39B371512508336800C6C172 /* FirebaseAuthService.swift in Sources */,
 				39630164250AE79F00939CA9 /* AddFriendView.swift in Sources */,
@@ -516,8 +584,10 @@
 				399FBB792513075100C9096B /* Extensions.swift in Sources */,
 				3963BF59252E1B7900D503B1 /* FriendMsgCell.swift in Sources */,
 				398C6C22250320B5002AC72A /* SignInViewController.swift in Sources */,
+				390502AD2534C80200828B11 /* ProfileViewController.swift in Sources */,
 				39BDD54B2509C49200223D98 /* FriendListView.swift in Sources */,
 				39D54AE324FEDCE000EB47B1 /* SceneDelegate.swift in Sources */,
+				390502B72536747700828B11 /* EditStatusViewController.swift in Sources */,
 				39630162250AC5A600939CA9 /* AddFriendViewController.swift in Sources */,
 				399FBB6A2512F54F00C9096B /* MessageViewController.swift in Sources */,
 				39630160250AA61900939CA9 /* FriendListCell.swift in Sources */,
@@ -525,6 +595,8 @@
 				39C2D0732515920F00E15A25 /* EditingView.swift in Sources */,
 				3963BF5E252E1C3800D503B1 /* UserMsgCell.swift in Sources */,
 				39B37157250834E600C6C172 /* ShroudUser.swift in Sources */,
+				3942800B2534BEB100C93501 /* ProgrammaticView.swift in Sources */,
+				390502B2253672A000828B11 /* EditStatusView.swift in Sources */,
 				397D7484251ECD9B00521810 /* MessageFormatter.swift in Sources */,
 				3963BF63252E242C00D503B1 /* ShroudColors.swift in Sources */,
 				39488D2D2506D3C00014ACB9 /* SignUpView.swift in Sources */,

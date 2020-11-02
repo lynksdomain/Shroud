@@ -35,6 +35,6 @@ class UserMsgCell: MessageCell {
         NSLayoutConstraint.activate([messageLabel.topAnchor.constraint(equalTo: senderLabel.bottomAnchor, constant: 5),
                                      messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11),
                                      messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -11),
-                                     messageLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.45)])
+                                     messageLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.75)])
     }
 }

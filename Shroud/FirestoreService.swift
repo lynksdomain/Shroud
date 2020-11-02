@@ -16,7 +16,7 @@ class FirestoreService {
     
     func getCurrentShroudUser(_ completion: @escaping (Result<ShroudUser, Error>) -> Void) {
         guard let currentUser = FirebaseAuthService.manager.currentUser else { return }
-        db.collection("users").document(currentUser.uid).getDocument { (snapshot, error) in
+        db.collection("users").document(currentUser.uid).addSnapshotListener { (snapshot, error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -103,22 +103,36 @@ class FirestoreService {
             onCompletion(.failure(GenericError.unknown))
             return
         }
-                
+        
         db.collection("users").document(current.uid).collection("friends").addSnapshotListener({ (snapshot, error) in
             if let error = error {
                 onCompletion(.failure(error))
             } else {
                 if let snapshot = snapshot {
-                    var friends = [ShroudUser]()
+                    var ids = [String]()
                     for document in snapshot.documents {
-                        guard let user = ShroudUser(dictionary: document.data()) else { continue }
-                        friends.append(user)
+                        guard let id = document.data()["uid"] as? String else { continue }
+                        ids.append(id)
                     }
-                    onCompletion(.success(friends))
+                    
+                    self.db.collection("users").whereField("uid", in: ids).addSnapshotListener { (snapshot, error) in
+                        if let error = error {
+                            onCompletion(.failure(error))
+                        } else {
+                            if let snapshot = snapshot {
+                                var friends = [ShroudUser]()
+                                for document in snapshot.documents {
+                                    guard let user = ShroudUser.init(dictionary: document.data()) else { return }
+                                    friends.append(user)
+                                }
+                                onCompletion(.success(friends))
+                            }
+                        }
+                    }
                 }
             }
         })
-    }
+}
     
     func fetchUnreadMessages(onCompletion: @escaping ((Result<[Message], Error>) -> Void)) {
         guard let current = FirebaseAuthService.manager.currentUser else {
@@ -214,6 +228,31 @@ class FirestoreService {
             if let error = error {
                 onCompletion(.failure(error))
             } else {
+                onCompletion(.success(()))
+            }
+        }
+        
+    }
+    
+    
+    
+    func updateStatus(_ newStatus: String, _ onCompletion: @escaping (Result<Void,Error>) -> Void) {
+      
+        guard let user = FirebaseAuthService.manager.currentUser else {
+            onCompletion(.failure(GenericError.unknown))
+            return
+        }
+        
+        db.collection("users").document("\(user.uid)").updateData(["status":newStatus]) { (error) in
+            if let error = error {
+                onCompletion(.failure(error))
+            } else {
+                
+                
+                
+                
+                
+                
                 onCompletion(.success(()))
             }
         }

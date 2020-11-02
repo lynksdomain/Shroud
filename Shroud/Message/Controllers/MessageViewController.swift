@@ -44,9 +44,14 @@ class MessageViewController: UIViewController {
         super.viewDidLoad()
         messageView.delegate = self
         messageView.messageTableView.dataSource = self
+        messageView.messageTableView.rowHeight = UITableView.automaticDimension
+        messageView.messageTableView.estimatedRowHeight = 600
         view.addSubview(messageView)
         setView()
         getMessage()
+        let heading = HeadingMsgView()
+        navigationItem.titleView = heading
+        heading.userLabel.text = friendUN
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name:UIResponder.keyboardWillShowNotification, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name:UIResponder.keyboardWillHideNotification, object: nil);
     }
@@ -151,6 +156,12 @@ extension MessageViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
     
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
     
 }
