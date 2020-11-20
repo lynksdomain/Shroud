@@ -81,11 +81,13 @@ class FirebaseAuthService {
         
     }
 
-    func signOut() {
+    func signOut() -> Bool {
         do {
             try Auth.auth().signOut()
+            return true
         } catch {
         print(error)
+            return false
         }
     }
     

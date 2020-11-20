@@ -28,6 +28,16 @@ class FirestoreService {
     }
     
     
+    
+    func updateProfilePicture(uid: String, url:String, onCompletion: @escaping (Result<Void, Error>) -> Void) {
+        db.collection("users").document(uid).updateData(["profilePicture":url]) { (error) in
+            if let error = error {
+                onCompletion(.failure(error))
+            } else {
+                onCompletion(.success(()))
+            }
+        }
+    }
     func usernameValid(_ username: String, onCompletion: @escaping (Result<Bool, Error>) -> Void) {
         db.collection("users").whereField("username", isEqualTo: username).getDocuments { (snapshot, error) in
             if let error = error {
@@ -189,7 +199,22 @@ class FirestoreService {
         }
     }
 
-}
+    }
+    
+    func fetchStatus(friendUID: String, _ onCompletion: @escaping (Result<String,Error>) -> Void) {
+        db.collection("users").document(friendUID).addSnapshotListener { (snapshot, error) in
+            if let snapshot = snapshot {
+                guard let data = snapshot.data(),
+                      let user = ShroudUser(dictionary: data) else { onCompletion(.failure(GenericError.unknown))
+                    return
+                }
+                onCompletion(.success(user.status))
+            } else if let error = error {
+                onCompletion(.failure(error))
+            }
+        }
+    }
+    
     
     
     func updateUnreadMessage(friendUID: String, _ onCompletion: @escaping (Result<Void,Error>) -> Void) {

@@ -34,6 +34,7 @@ class MessageView: UIView {
         tv.isScrollEnabled = false
         tv.font = UIFont.systemFont(ofSize: 15)
         tv.keyboardAppearance = .dark
+        tv.autocorrectionType = .no
         return tv
     }()
     
@@ -58,7 +59,7 @@ class MessageView: UIView {
         return view
     }()
     
-    lazy var bottomConstraint: NSLayoutConstraint = NSLayoutConstraint(item: editingView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
+    lazy var bottomConstraint: NSLayoutConstraint = NSLayoutConstraint(item: editingView, attribute: .bottom, relatedBy: .equal, toItem: self.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0)
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)

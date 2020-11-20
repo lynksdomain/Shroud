@@ -10,6 +10,7 @@ import UIKit
 
 protocol SignInViewControllerDelegate: AnyObject {
     func newUserCreated()
+    func loggedIn()
 }
 
 class SignInViewController: UIViewController {
@@ -31,17 +32,12 @@ extension SignInViewController: SignInDelegate {
         guard let email = email else { return }
         guard let password = password else { return }
         
-        FirebaseAuthService.manager.loginUser(withEmail: email, andPassword: password) { (result) in
+        FirebaseAuthService.manager.loginUser(withEmail: email, andPassword: password) { [weak self] (result) in
             switch result {
             case let .failure(error):
                 print(error)
             case .success:
-                if let parent = self.presentingViewController as? MainControllers,
-                    let nav = parent.viewControllers?[0] as? UINavigationController,
-                    let friendList = nav.viewControllers[0] as? FriendListViewController{
-                    friendList.getFriends()
-                }
-                self.dismiss(animated: true, completion: nil)
+                self?.delegate?.loggedIn()
                 }
             }
         }

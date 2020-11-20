@@ -13,7 +13,7 @@ pod 'Firebase/Storage'
 pod 'Firebase/Auth'
 pod 'FirebaseFirestoreSwift'
 pod 'MarqueeLabel'
-
+pod 'Kingfisher', '~> 5.0'
 
   target 'ShroudTests' do
     inherit! :search_paths
