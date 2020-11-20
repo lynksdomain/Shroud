@@ -8,10 +8,12 @@
 
 import UIKit
 
+
+
+
 class FriendListViewController: UIViewController {
 
     private var currentUser: ShroudUser?
-    //private var loaded = false
     private var friendListView = FriendListView()
     private var friends = [ShroudUser]() {
         didSet {
@@ -102,9 +104,25 @@ class FriendListViewController: UIViewController {
         let profile = ProfileViewController(user)
         profile.modalTransitionStyle = .crossDissolve
         profile.modalPresentationStyle = .overFullScreen
+        profile.delegate = self
         present(profile, animated: true, completion: nil)
     }
 }
+
+
+extension FriendListViewController: ProfileViewControllerDelegate {
+    func logOut() {
+        guard let main = self.tabBarController as? MainControllers,
+              let nav = main.navigationController else { return }
+        let sign = SignInViewController()
+        sign.modalPresentationStyle = .fullScreen
+        sign.modalTransitionStyle = .crossDissolve
+        sign.modalPresentationCapturesStatusBarAppearance = true
+        main.setDelegateToFriendList(sign)
+        nav.present(sign, animated: false, completion: nil)
+    }
+}
+
 
 
 extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -137,7 +155,7 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
             FirestoreService.manager.updateUnreadMessage(friendUID: user.uid) { (result) in
             }
         }
-        let msgView = MessageViewController(friendUID: user.uid, friendUN: user.username, currentUN: currentUser.username)
+        let msgView = MessageViewController(friend: user, currentUN: currentUser.username)
             navigationController?.pushViewController(msgView, animated: true)
     }
     
@@ -146,6 +164,12 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
 
 
 extension FriendListViewController: SignInViewControllerDelegate {
+    func loggedIn() {
+        getFriends()
+        getUser()
+        dismiss(animated: true, completion: nil)
+    }
+    
     func newUserCreated() {
         getFriends()
         getUser()

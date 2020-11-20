@@ -10,11 +10,20 @@ import UIKit
 
 class MessageViewController: UIViewController {
     
-    var friendUID: String!
-    var friendUN: String!
+    var friend: ShroudUser!
     var currentUN: String!
     lazy var messageView = MessageView()
     var messageFormatter = MessageFormatter()
+    let heading = HeadingMsgView()
+    
+    var status = "" {
+        didSet {
+            DispatchQueue.main.async {
+                self.heading.statusLabel.text = self.status
+            }
+        }
+    }
+    
     
     var messages = [Message]() {
         didSet {
@@ -26,17 +35,15 @@ class MessageViewController: UIViewController {
         }
     }
     
-    init(friendUID: String, friendUN: String, currentUN: String) {
+    init(friend: ShroudUser, currentUN: String) {
         super.init(nibName: nil, bundle: nil)
-        self.friendUID = friendUID
-        self.friendUN = friendUN
+        self.friend = friend
         self.currentUN = currentUN
-        messageView.setFriendUID(friendUID)
+        messageView.setFriendUID(friend.uid)
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.friendUID = ""
     }
     
     
@@ -49,9 +56,10 @@ class MessageViewController: UIViewController {
         view.addSubview(messageView)
         setView()
         getMessage()
-        let heading = HeadingMsgView()
+        getStatus()
         navigationItem.titleView = heading
-        heading.userLabel.text = friendUN
+        heading.userLabel.text = friend.username
+        heading.statusLabel.text = friend.status
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name:UIResponder.keyboardWillShowNotification, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name:UIResponder.keyboardWillHideNotification, object: nil);
     }
@@ -63,14 +71,26 @@ class MessageViewController: UIViewController {
     }
     
     private func updateMessages() {
-        FirestoreService.manager.updateUnreadMessage(friendUID: friendUID) { (result) in
+        FirestoreService.manager.updateUnreadMessage(friendUID: friend.uid) { (result) in
             
         }
     }
     
     
+    private func getStatus() {
+        FirestoreService.manager.fetchStatus(friendUID: friend.uid) {[weak self] (result) in
+            switch result {
+            case let .failure(error):
+                print(error)
+            case let .success(status):
+                self?.status = status
+            }
+        }
+    }
+    
+    
     private func getMessage() {
-        FirestoreService.manager.fetchConversation(friendUID: friendUID) {[weak self] (result) in
+        FirestoreService.manager.fetchConversation(friendUID: friend.uid) {[weak self] (result) in
             switch result {
             case let .failure(error):
                 print(error)
@@ -123,7 +143,7 @@ class MessageViewController: UIViewController {
 
 extension MessageViewController: MessageViewDelegate {
     func sendPressed(message: Message) {
-        FirestoreService.manager.sendMessage(friendUID, message) { (result) in
+        FirestoreService.manager.sendMessage(friend.uid, message) { (result) in
             switch result {
             case let .failure(error):
                 print(error)
@@ -142,10 +162,9 @@ extension MessageViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let messageItem = messages[indexPath.row]
-        if friendUID == messageItem.authorUID {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendCell", for: indexPath) as? FriendMsgCell,
-              let friendUN = friendUN else { return UITableViewCell() }
-            cell.setFormatting(message: messageItem, sender: friendUN)
+        if friend.uid == messageItem.authorUID {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendCell", for: indexPath) as? FriendMsgCell else { return UITableViewCell() }
+            cell.setFormatting(message: messageItem, sender: friend.username)
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as? UserMsgCell,

@@ -9,13 +9,16 @@
 import UIKit
 
 
+protocol ProfileViewControllerDelegate: AnyObject {
+    func logOut()
+}
 
 
 class ProfileViewController: UIViewController {
 
     let profileView = ProfileView()
     var user: ShroudUser!
-    
+    var delegate: ProfileViewControllerDelegate?
     
     init(_ user: ShroudUser) {
         super.init(nibName: nil, bundle: nil)
@@ -34,14 +37,28 @@ class ProfileViewController: UIViewController {
         profileView.tap.addTarget(self, action: #selector(dismissVC))
         profileView.editPhoto.addTarget(self, action: #selector(editPhoto))
         profileView.editStatus.addTarget(self, action: #selector(editStatus), for: .touchUpInside)
+        profileView.logOut.addTarget(self, action: #selector(logOut), for: .touchUpInside)
         profileView.usernameLabel.text = user.username
         profileView.statusField.text = user.status
     }
     
     
+    @objc func logOut() {
+        if FirebaseAuthService.manager.signOut() {
+        dismiss(animated: false) {
+            self.delegate?.logOut()
+        }
+        }
+    }
+    
     
     @objc func editPhoto() {
-        print("photos")
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        pickerController.sourceType = .photoLibrary
+        pickerController.allowsEditing = true
+        pickerController.overrideUserInterfaceStyle = .dark
+        present(pickerController, animated: true, completion: nil)
     }
     
     @objc func editStatus() {
@@ -64,4 +81,24 @@ extension ProfileViewController: EditStatusControllerDelegate {
     func setStatus(_ status: String) {
         profileView.statusField.text = status
     }
+}
+
+
+extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage,
+              let data = image.jpegData(compressionQuality: 1.0) else { return }
+        FirebaseStorageService.manager.addProfileImage(user: user, profilePicture: data) {[weak self] (result) in
+            switch result {
+            case let .failure(error):
+                print(error)
+            case .success():
+                self?.profileView.profileImage.image = image
+            }
+            self?.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    
 }
