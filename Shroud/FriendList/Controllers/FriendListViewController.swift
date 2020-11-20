@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 
 
 
@@ -136,6 +136,8 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
         let user = friends[indexPath.row]
         cell.nameLabel.text = user.username
         cell.statusLabel.text = user.status
+        cell.avatar.kf.indicatorType = .activity
+        cell.avatar.kf.setImage(with: URL(string: user.profilePicture))
         
         if update.contains(user.uid) {
             cell.backgroundColor = .green
@@ -159,6 +161,7 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
             navigationController?.pushViewController(msgView, animated: true)
     }
     
+   
 }
 
 

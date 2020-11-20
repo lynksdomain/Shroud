@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 
 protocol ProfileViewControllerDelegate: AnyObject {
@@ -40,6 +41,8 @@ class ProfileViewController: UIViewController {
         profileView.logOut.addTarget(self, action: #selector(logOut), for: .touchUpInside)
         profileView.usernameLabel.text = user.username
         profileView.statusField.text = user.status
+        profileView.profileImage.kf.indicatorType = .activity
+        profileView.profileImage.kf.setImage(with: URL(string: user.profilePicture))
     }
     
     
@@ -93,8 +96,8 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             switch result {
             case let .failure(error):
                 print(error)
-            case .success():
-                self?.profileView.profileImage.image = image
+            case let .success(url):
+                self?.profileView.profileImage.kf.setImage(with: url)
             }
             self?.dismiss(animated: true, completion: nil)
         }

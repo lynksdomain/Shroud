@@ -17,13 +17,26 @@ class FirebaseStorageService {
     
     let storage = Storage.storage()
 
-    func addProfileImage(user: ShroudUser, profilePicture: Data, onCompletion: @escaping (Result<Void,Error>) -> Void ) {
+    func addProfileImage(user: ShroudUser, profilePicture: Data, onCompletion: @escaping (Result<URL,Error>) -> Void ) {
         let folderRef = storage.reference().child("UserPicture")
         let pictureRef = folderRef.child("\(user.uid).jpg")
         
         pictureRef.putData(profilePicture, metadata: nil) { (meta, error) in
             if let _ = meta {
-                onCompletion(.success(()))
+                pictureRef.downloadURL { (url, error) in
+                    if let url = url {
+                        FirestoreService.manager.updateProfilePicture(uid: user.uid, url: url.absoluteString) { (result) in
+                            switch result {
+                            case .success(()):
+                                onCompletion(.success((url)))
+                            case let .failure(error):
+                                onCompletion(.failure(error))
+                            }
+                        }
+                    } else if let error = error {
+                        onCompletion(.failure(error))
+                    }
+                }
             } else if let error = error {
                 onCompletion(.failure(error))
             }
