@@ -142,6 +142,16 @@ class MessageViewController: UIViewController {
 }
 
 extension MessageViewController: MessageViewDelegate {
+    @available(iOS 14.0, *)
+    func colorPickerPressed() {
+        let colorPicker = UIColorPickerViewController()
+        colorPicker.selectedColor = .white
+        colorPicker.supportsAlpha = false
+        colorPicker.overrideUserInterfaceStyle = .dark
+        colorPicker.delegate = self
+        present(colorPicker, animated: true, completion: nil)
+    }
+    
     func sendPressed(message: Message) {
         FirestoreService.manager.sendMessage(friend.uid, message) { (result) in
             switch result {
@@ -153,6 +163,15 @@ extension MessageViewController: MessageViewDelegate {
         }
     }
 }
+
+
+@available(iOS 14.0, *)
+extension MessageViewController: UIColorPickerViewControllerDelegate {
+    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+        messageView.customColorSelected(color: viewController.selectedColor)
+    }
+}
+
 
 
 extension MessageViewController: UITableViewDelegate, UITableViewDataSource {

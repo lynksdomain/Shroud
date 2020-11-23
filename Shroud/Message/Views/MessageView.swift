@@ -10,6 +10,8 @@ import UIKit
 
 protocol MessageViewDelegate: AnyObject {
     func sendPressed(message: Message)
+    @available(iOS 14.0, *)
+    func colorPickerPressed()
 }
 
 class MessageView: UIView {
@@ -110,17 +112,32 @@ class MessageView: UIView {
     
     
     
-    
     @objc private func redSelected() {
-        if editingView.redText.isSelected {
-            messageFormatter.setRedText()
+        
+        if #available(iOS 14.0, *) {
+            delegate?.colorPickerPressed()
         } else {
-            editingView.redText.isSelected.toggle()
-            messageFormatter.setRedText()
+            if !editingView.redText.isSelected {
+                editingView.redText.isSelected.toggle()
+            }
+            
+            messageFormatter.setColorText(color: .red)
+            messageFormatter.updateInput(inputTextView)
+            editingView.whiteText.isSelected = false
         }
+    }
+    
+     func customColorSelected(color: UIColor) {
+        if !editingView.redText.isSelected {
+            editingView.redText.isSelected.toggle()
+        }
+        
+        editingView.redText.setTitleColor(color, for: .normal)
+        messageFormatter.setColorText(color: color)
         messageFormatter.updateInput(inputTextView)
         editingView.whiteText.isSelected = false
     }
+    
     
     
     

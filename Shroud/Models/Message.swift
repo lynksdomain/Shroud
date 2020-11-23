@@ -13,9 +13,7 @@ enum FontSize: String {
     case regular, large, small
 }
 
-enum FontColor: String {
-    case white, red
-}
+
 
 enum FontType: String {
     case regular, bold, light
@@ -25,13 +23,13 @@ struct Message {
     let message: String
     let authorUID: String
     let fontSize: FontSize
-    let fontColor: FontColor
+    let fontColor: UIColor
     let fontType: FontType
     let users: [String]
     let read: Bool
     let timestamp: Timestamp
     
-    init(_ message: String, _ authorUID: String, _ fontSize: FontSize, _ fontColor: FontColor, _ fontType: FontType, users: [String], read: Bool, timestamp: Timestamp) {
+    init(_ message: String, _ authorUID: String, _ fontSize: FontSize, _ fontColor: UIColor, _ fontType: FontType, users: [String], read: Bool, timestamp: Timestamp) {
         self.message = message
         self.authorUID = authorUID
         self.fontSize = fontSize
@@ -46,10 +44,11 @@ struct Message {
         guard let message = dictionary["message"] as? String,
               let authorUID = dictionary["uid"] as? String,
               let fontSizeString =  dictionary["fontSize"] as? String,
-              let fontColorString = dictionary["fontColor"] as? String,
+              let red = dictionary["red"] as? CGFloat,
+              let blue = dictionary["blue"] as? CGFloat,
+              let green = dictionary["green"] as? CGFloat,
               let fontTypeString = dictionary["fontType"] as? String,
               let fontSize = FontSize(rawValue: fontSizeString),
-              let fontColor = FontColor(rawValue: fontColorString),
               let fontType = FontType(rawValue: fontTypeString),
               let users = dictionary["users"] as? [String],
               let read = dictionary["read"] as? Bool,
@@ -58,7 +57,7 @@ struct Message {
         self.message = message
         self.authorUID = authorUID
         self.fontSize = fontSize
-        self.fontColor = fontColor
+        self.fontColor = UIColor.init(red: red, green: green, blue: blue, alpha: 1.0)
         self.fontType = fontType
         self.users = users
         self.read = read
@@ -71,7 +70,9 @@ struct Message {
             "message":message,
             "uid":authorUID,
             "fontSize":fontSize.rawValue,
-            "fontColor":fontColor.rawValue,
+            "red":fontColor.rgbComponents.red,
+            "blue":fontColor.rgbComponents.blue,
+            "green":fontColor.rgbComponents.green,
             "fontType":fontType.rawValue,
             "users":users,
             "read":read,
