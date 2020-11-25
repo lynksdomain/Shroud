@@ -10,6 +10,9 @@ import UIKit
 
 protocol MessageViewDelegate: AnyObject {
     func sendPressed(message: Message)
+    func mmsPreview(image: UIImage)
+    func mmsSend(image:UIImage)
+    func mmsPressed()
     @available(iOS 14.0, *)
     func colorPickerPressed()
 }
@@ -17,12 +20,16 @@ protocol MessageViewDelegate: AnyObject {
 class MessageView: UIView {
    
     let messageFormatter = MessageFormatter()
+    
+    
     weak var delegate: MessageViewDelegate?
     
     lazy var messageTableView: UITableView = {
         let tv = UITableView()
         tv.separatorStyle = .none
         tv.backgroundColor = .black
+        tv.register(FriendImgCell.self, forCellReuseIdentifier: "friendImgCell")
+        tv.register(UserImgCell.self, forCellReuseIdentifier: "userImgCell")
         tv.register(FriendMsgCell.self, forCellReuseIdentifier: "friendCell")
         tv.register(UserMsgCell.self, forCellReuseIdentifier: "userCell")
         tv.keyboardDismissMode = .onDrag
@@ -40,6 +47,21 @@ class MessageView: UIView {
         return tv
     }()
     
+    lazy var mmsButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "camera")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(mmsPressed), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var mmsImageView: MmsImageView = {
+        let view = MmsImageView(frame: CGRect.zero)
+        view.cancelButton.addTarget(self, action: #selector(mmsCanceled), for: .touchUpInside)
+        view.pictureTap.addTarget(self, action: #selector(mmsPreview))
+        return view
+    }()
+    
     
     lazy var sendButton: UIButton = {
         let button = UIButton()
@@ -50,10 +72,21 @@ class MessageView: UIView {
     }()
     
     lazy var inputContainer: UIView = {
-       let tv = UIView()
+        let tv = UIView()
         tv.backgroundColor = .black
         return tv
     }()
+    
+    lazy var mmsContainer: UIView = {
+        let tv = UIView()
+        tv.backgroundColor = .black
+        tv.layer.borderWidth = 0.3
+        tv.layer.borderColor = UIColor.lightGray.cgColor
+        return tv
+    }()
+    
+    lazy var mmsHeightConstraint: NSLayoutConstraint = NSLayoutConstraint(item: mmsContainer, attribute: .height, relatedBy: .equal, toItem: mmsContainer, attribute: .height, multiplier: 0, constant: 0)
+    
     
     lazy var editingView: EditingView = {
         let view = EditingView()
@@ -76,13 +109,15 @@ class MessageView: UIView {
     private func commonInit() {
         addEditView()
         addInputContainer()
+        addMmsButton()
         addSendButton()
         addInputView()
+        addMmsContainer()
+        addMmsImageView()
         addMessageView()
         backgroundColor = .black
         addActionsToButtons()
     }
-    
     
     
     private func addActionsToButtons() {
@@ -96,6 +131,23 @@ class MessageView: UIView {
     
      func setFriendUID(_ friendUID: String) {
         messageFormatter.setFriend(friendUID)
+    }
+    
+    func setMmsImage(image: UIImage) {
+        mmsImageView.image = image
+    }
+    
+    @objc private func mmsCanceled() {
+        UIView.animate(withDuration: 0.1, animations: { () -> Void in
+            self.mmsHeightConstraint.constant = 0
+            self.layoutIfNeeded()
+            self.mmsImageView.image = nil
+            })
+    }
+    
+    @objc private func mmsPreview() {
+        guard let image = mmsImageView.image else { return }
+        delegate?.mmsPreview(image: image )
     }
     
     
@@ -195,6 +247,8 @@ class MessageView: UIView {
         editingView.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
     
+    
+    
     private func addSendButton() {
         sendButton.translatesAutoresizingMaskIntoConstraints = false
         inputContainer.addSubview(sendButton)
@@ -204,11 +258,21 @@ class MessageView: UIView {
 
     }
     
+    private func addMmsButton() {
+        mmsButton.translatesAutoresizingMaskIntoConstraints = false
+        inputContainer.addSubview(mmsButton)
+        mmsButton.bottomAnchor.constraint(equalTo: inputContainer.bottomAnchor, constant: -3).isActive = true
+        mmsButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        mmsButton.leadingAnchor.constraint(equalTo: inputContainer.leadingAnchor, constant: 11).isActive = true
+
+    }
+    
+    
     private func addInputView() {
         inputTextView.translatesAutoresizingMaskIntoConstraints = false
         inputContainer.addSubview(inputTextView)
         inputTextView.bottomAnchor.constraint(equalTo: inputContainer.bottomAnchor).isActive = true
-        inputTextView.leadingAnchor.constraint(equalTo: inputContainer.leadingAnchor).isActive = true
+        inputTextView.leadingAnchor.constraint(equalTo: mmsButton.trailingAnchor,constant: 5).isActive = true
         inputTextView.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor ).isActive = true
         inputContainer.heightAnchor.constraint(equalTo: inputTextView.heightAnchor).isActive = true
 
@@ -223,6 +287,24 @@ class MessageView: UIView {
         inputContainer.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
     }
     
+    private func addMmsContainer() {
+        mmsContainer.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(mmsContainer)
+        mmsContainer.bottomAnchor.constraint(equalTo: inputContainer.topAnchor).isActive = true
+        mmsContainer.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        mmsContainer.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        mmsHeightConstraint.isActive = true
+    }
+    
+    private func addMmsImageView() {
+        mmsImageView.translatesAutoresizingMaskIntoConstraints = false
+        mmsContainer.addSubview(mmsImageView)
+        mmsImageView.topAnchor.constraint(equalTo: mmsContainer.topAnchor, constant: 5).isActive = true
+        mmsImageView.bottomAnchor.constraint(equalTo: mmsContainer.bottomAnchor, constant: -5).isActive = true
+        mmsImageView.widthAnchor.constraint(equalTo: mmsImageView.heightAnchor).isActive = true
+        mmsImageView.leadingAnchor.constraint(equalTo: inputTextView.leadingAnchor).isActive = true
+    }
+    
     
     private func addMessageView() {
         messageTableView.translatesAutoresizingMaskIntoConstraints = false
@@ -230,12 +312,22 @@ class MessageView: UIView {
         messageTableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
         messageTableView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         messageTableView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        messageTableView.bottomAnchor.constraint(equalTo: inputTextView.topAnchor).isActive = true
+        messageTableView.bottomAnchor.constraint(equalTo: mmsContainer.topAnchor).isActive = true
+    }
+    @objc private func mmsPressed() {
+        delegate?.mmsPressed()
     }
     
     
-    
     @objc private func sendPressed() {
+        
+        if let image = mmsImageView.image {
+            delegate?.mmsSend(image: image)
+            mmsCanceled()
+        }
+        
+        
+        
         guard inputTextView.text.count > 0,
               let messageItem = messageFormatter.createMessage(inputTextView.text) else { return }
         delegate?.sendPressed(message: messageItem)

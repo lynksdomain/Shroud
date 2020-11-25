@@ -29,6 +29,8 @@ class FirestoreService {
     
     
     
+    
+    
     func updateProfilePicture(uid: String, url:String, onCompletion: @escaping (Result<Void, Error>) -> Void) {
         db.collection("users").document(uid).updateData(["profilePicture":url]) { (error) in
             if let error = error {

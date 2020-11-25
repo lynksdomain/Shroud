@@ -26,6 +26,11 @@
 		397D7484251ECD9B00521810 /* MessageFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397D7483251ECD9B00521810 /* MessageFormatter.swift */; };
 		398C6C22250320B5002AC72A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398C6C21250320B5002AC72A /* SignInViewController.swift */; };
 		398FA034251A85D1009762BD /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398FA033251A85D1009762BD /* Message.swift */; };
+		3990BBE0256D69CC00D1013B /* MmsImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3990BBDF256D69CC00D1013B /* MmsImageView.swift */; };
+		3990BBE5256D83D400D1013B /* ImagePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3990BBE4256D83D400D1013B /* ImagePreviewViewController.swift */; };
+		3990BBEA256DB75A00D1013B /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3990BBE9256DB75A00D1013B /* ImageCell.swift */; };
+		3990BBEF256DB8A200D1013B /* UserImgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3990BBEE256DB8A200D1013B /* UserImgCell.swift */; };
+		3990BBF4256DB93A00D1013B /* FriendImgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3990BBF3256DB93A00D1013B /* FriendImgCell.swift */; };
 		3993CD44252F822500075DCB /* HeadingMsgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3993CD43252F822500075DCB /* HeadingMsgView.swift */; };
 		399FBB6A2512F54F00C9096B /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399FBB692512F54F00C9096B /* MessageViewController.swift */; };
 		399FBB6F2512F5E000C9096B /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399FBB6E2512F5E000C9096B /* MessageView.swift */; };
@@ -87,6 +92,11 @@
 		397D7483251ECD9B00521810 /* MessageFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageFormatter.swift; sourceTree = "<group>"; };
 		398C6C21250320B5002AC72A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		398FA033251A85D1009762BD /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		3990BBDF256D69CC00D1013B /* MmsImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MmsImageView.swift; sourceTree = "<group>"; };
+		3990BBE4256D83D400D1013B /* ImagePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewViewController.swift; sourceTree = "<group>"; };
+		3990BBE9256DB75A00D1013B /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		3990BBEE256DB8A200D1013B /* UserImgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImgCell.swift; sourceTree = "<group>"; };
+		3990BBF3256DB93A00D1013B /* FriendImgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendImgCell.swift; sourceTree = "<group>"; };
 		3993CD43252F822500075DCB /* HeadingMsgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingMsgView.swift; sourceTree = "<group>"; };
 		399FBB692512F54F00C9096B /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		399FBB6E2512F5E000C9096B /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
@@ -203,11 +213,15 @@
 			isa = PBXGroup;
 			children = (
 				399FBB6E2512F5E000C9096B /* MessageView.swift */,
+				3990BBDF256D69CC00D1013B /* MmsImageView.swift */,
 				3963BF58252E1B7900D503B1 /* FriendMsgCell.swift */,
 				3963BF5D252E1C3800D503B1 /* UserMsgCell.swift */,
 				39C2D0722515920F00E15A25 /* EditingView.swift */,
 				399FBB732512F6B000C9096B /* MessageCell.swift */,
 				3993CD43252F822500075DCB /* HeadingMsgView.swift */,
+				3990BBEE256DB8A200D1013B /* UserImgCell.swift */,
+				3990BBF3256DB93A00D1013B /* FriendImgCell.swift */,
+				3990BBE9256DB75A00D1013B /* ImageCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -216,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				399FBB692512F54F00C9096B /* MessageViewController.swift */,
+				3990BBE4256D83D400D1013B /* ImagePreviewViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -594,17 +609,22 @@
 				393C68E625030B09003B6849 /* SignInView.swift in Sources */,
 				399FBB792513075100C9096B /* Extensions.swift in Sources */,
 				3963BF59252E1B7900D503B1 /* FriendMsgCell.swift in Sources */,
+				3990BBE5256D83D400D1013B /* ImagePreviewViewController.swift in Sources */,
 				398C6C22250320B5002AC72A /* SignInViewController.swift in Sources */,
 				390502AD2534C80200828B11 /* ProfileViewController.swift in Sources */,
 				39BDD54B2509C49200223D98 /* FriendListView.swift in Sources */,
+				3990BBE0256D69CC00D1013B /* MmsImageView.swift in Sources */,
 				39D54AE324FEDCE000EB47B1 /* SceneDelegate.swift in Sources */,
 				390502B72536747700828B11 /* EditStatusViewController.swift in Sources */,
+				3990BBEA256DB75A00D1013B /* ImageCell.swift in Sources */,
+				3990BBEF256DB8A200D1013B /* UserImgCell.swift in Sources */,
 				39630162250AC5A600939CA9 /* AddFriendViewController.swift in Sources */,
 				399FBB6A2512F54F00C9096B /* MessageViewController.swift in Sources */,
 				39630160250AA61900939CA9 /* FriendListCell.swift in Sources */,
 				39B371532508344100C6C172 /* FirestoreService.swift in Sources */,
 				39C2D0732515920F00E15A25 /* EditingView.swift in Sources */,
 				3963BF5E252E1C3800D503B1 /* UserMsgCell.swift in Sources */,
+				3990BBF4256DB93A00D1013B /* FriendImgCell.swift in Sources */,
 				39B37157250834E600C6C172 /* ShroudUser.swift in Sources */,
 				3942800B2534BEB100C93501 /* ProgrammaticView.swift in Sources */,
 				390502B2253672A000828B11 /* EditStatusView.swift in Sources */,

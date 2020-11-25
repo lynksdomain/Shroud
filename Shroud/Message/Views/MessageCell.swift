@@ -39,9 +39,11 @@ class MessageCell: UITableViewCell {
     
     
     func setFormatting(message: Message, sender: String) {
+        guard let fontType = message.fontType,
+              let fontSize = message.fontSize else { return }
         messageLabel.textColor = message.fontColor
         
-        switch (message.fontType, message.fontSize) {
+        switch (fontType, fontSize) {
         case (.bold,.large):
             messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         case (.bold,.regular):
