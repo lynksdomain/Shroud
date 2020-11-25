@@ -161,7 +161,31 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
             navigationController?.pushViewController(msgView, animated: true)
     }
     
-   
+    func deleteFriendPrompt() {
+        print("you are about to delete a friend")
+    }
+    
+    func blockFriendPrompt() {
+        print("you are about to block a friend")
+    }
+    
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteFriend = UIContextualAction(style: .destructive, title: "Remove  Friend") { [weak self](action, view, completion) in
+            self?.deleteFriendPrompt()
+            completion(true)
+        }
+        deleteFriend.backgroundColor = ShroudColors.userBlue
+        
+        let block = UIContextualAction(style: .destructive, title: "Block") { [weak self](action, view, completion) in
+            self?.blockFriendPrompt()
+            completion(true)
+        }
+        block.backgroundColor = ShroudColors.friendRed
+        
+        
+        return UISwipeActionsConfiguration(actions: [block, deleteFriend])
+    }
 }
 
 

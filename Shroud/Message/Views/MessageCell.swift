@@ -39,14 +39,11 @@ class MessageCell: UITableViewCell {
     
     
     func setFormatting(message: Message, sender: String) {
-        switch message.fontColor {
-        case .white:
-            messageLabel.textColor = .white
-        case.red:
-            messageLabel.textColor = .red
-        }
+        guard let fontType = message.fontType,
+              let fontSize = message.fontSize else { return }
+        messageLabel.textColor = message.fontColor
         
-        switch (message.fontType, message.fontSize) {
+        switch (fontType, fontSize) {
         case (.bold,.large):
             messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         case (.bold,.regular):
@@ -66,7 +63,8 @@ class MessageCell: UITableViewCell {
         case (.light,.small):
             messageLabel.font = UIFont.systemFont(ofSize: 13, weight: .ultraLight)
         }
-        senderLabel.text = sender
+        senderLabel.attributedText = NSAttributedString(string: sender, attributes:
+                                                            [.underlineStyle: NSUnderlineStyle.single.rawValue])
         messageLabel.text = message.message
     }
     

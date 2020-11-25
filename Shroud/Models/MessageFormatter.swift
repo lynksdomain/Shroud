@@ -12,12 +12,12 @@ import FirebaseFirestore
 
 class MessageFormatter {
     private var friendUID = ""
-    private var fontColor: FontColor = .white
+    private var fontColor: UIColor = .white
     private var fontType: FontType = .regular
     private var fontSize: FontSize = .regular
     
-    func setRedText() {
-        fontColor = .red
+    func setColorText(color: UIColor) {
+        fontColor = color
     }
     
     func setWhiteText() {
@@ -70,12 +70,7 @@ class MessageFormatter {
             input.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         }
         
-        switch fontColor {
-        case .red:
-            input.textColor = .red
-        case .white:
-            input.textColor = .white
-        }
+        input.textColor = fontColor
     }
     
     func setFriend(_ friendUID: String) {
