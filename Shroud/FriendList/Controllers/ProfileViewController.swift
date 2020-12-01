@@ -56,12 +56,25 @@ class ProfileViewController: UIViewController {
     
     
     @objc func editPhoto() {
+        
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.sourceType = .photoLibrary
         pickerController.allowsEditing = true
         pickerController.overrideUserInterfaceStyle = .dark
-        present(pickerController, animated: true, completion: nil)
+        
+        if Default.hasSetUserPhoto() {
+            present(pickerController, animated: true, completion: nil)
+        } else {
+            let prompt = UIAlertController(title: "Notice", message: "We strongly recommend using a picture of an avatar and not a personal picture!", preferredStyle: .alert)
+            prompt.overrideUserInterfaceStyle = .dark
+            let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+                Default.setFirstTimeUserPhoto()
+                self.present(pickerController, animated: true, completion: nil)
+            }
+            prompt.addAction(okAction)
+            present(prompt, animated: true, completion: nil)
+        }
     }
     
     @objc func editStatus() {
