@@ -161,30 +161,44 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
             navigationController?.pushViewController(msgView, animated: true)
     }
     
-    func deleteFriendPrompt() {
-        print("you are about to delete a friend")
+    func deleteFriendPrompt(row:Int) {
+        //alert to delete friend
+        let prompt = UIAlertController(title: "Do you want to delete this friend?", message: "You will also be removed from their list", preferredStyle: .alert)
+        prompt.overrideUserInterfaceStyle = .dark
+        let cancel = UIAlertAction(title: "Cancel", style: .default) { (alert) in
+            prompt.dismiss(animated: true, completion: nil)
+        }
+        let delete = UIAlertAction(title: "Delete", style: .destructive) { (alert) in
+            guard let current = self.currentUser else { return }
+            FirestoreService.manager.deleteFriend(current.uid, self.friends[row].uid)
+        }
+        prompt.addAction(cancel)
+        prompt.addAction(delete)
+        present(prompt, animated: true, completion: nil)
     }
     
-    func blockFriendPrompt() {
+    func blockFriendPrompt(row:Int) {
+        //alert to block friend
         print("you are about to block a friend")
     }
     
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteFriend = UIContextualAction(style: .destructive, title: "Remove  Friend") { [weak self](action, view, completion) in
-            self?.deleteFriendPrompt()
+            self?.deleteFriendPrompt(row: indexPath.row)
             completion(true)
         }
         deleteFriend.backgroundColor = ShroudColors.userBlue
-        
+
         let block = UIContextualAction(style: .destructive, title: "Block") { [weak self](action, view, completion) in
-            self?.blockFriendPrompt()
+            self?.blockFriendPrompt(row: indexPath.row)
             completion(true)
         }
         block.backgroundColor = ShroudColors.friendRed
+        let swipe = UISwipeActionsConfiguration(actions: [block, deleteFriend])
+        swipe.performsFirstActionWithFullSwipe = false
         
-        
-        return UISwipeActionsConfiguration(actions: [block, deleteFriend])
+        return swipe
     }
 }
 

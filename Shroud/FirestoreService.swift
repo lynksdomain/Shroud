@@ -64,6 +64,56 @@ class FirestoreService {
         }
     }
     
+    func deleteFriend(_ uid: String, _ friendUid: String) {
+        let batch = db.batch()
+        //delete user from your collection
+        let userRef = db.collection("users").document(uid).collection("friends").document(friendUid)
+        //delete yourself from their collection
+        let friendRef = db.collection("users").document(friendUid).collection("friends").document(uid)
+        batch.deleteDocument(userRef)
+        batch.deleteDocument(friendRef)
+        batch.commit()
+        
+        var batches = [WriteBatch]()
+        //delete conversations
+        db.collection("users").document(uid).collection("messages").whereField("users", arrayContains: friendUid).getDocuments { (snapshot, error) in
+            var overallCount = 0
+            if let snapshot = snapshot {
+                var count = 0
+                for document in snapshot.documents {
+                    if batches.isEmpty { batches.append(self.db.batch()) }
+                    if count == 500 {
+                        batches.append(self.db.batch())
+                        batches[batches.count - 1].deleteDocument(document.reference)
+                        count = 1
+                    } else {
+                        batches[batches.count - 1].deleteDocument(document.reference)
+                        count += 1
+                    }
+                }
+                overallCount = count
+            }
+            
+            self.db.collection("users").document(friendUid).collection("messages").whereField("users", arrayContains: uid).getDocuments { (snapshot, error) in
+                if let snapshot = snapshot {
+                    var count = overallCount
+                    for document in snapshot.documents {
+                        if batches.isEmpty { batches.append(self.db.batch()) }
+                        if count == 500 {
+                            batches.append(self.db.batch())
+                            batches[batches.count - 1].deleteDocument(document.reference)
+                            count = 1
+                        } else {
+                            batches[batches.count - 1].deleteDocument(document.reference)
+                            count += 1
+                        }
+                    }
+                }
+                batches.forEach{ $0.commit() }
+            }
+        }
+    }
+    
     
     func addFriend(_ username: String, onCompletion: @escaping (Result<Void, Error>) -> Void) {
         db.collection("users").whereField("username", isEqualTo: username).getDocuments { (snapshot, error) in

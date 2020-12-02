@@ -47,11 +47,22 @@ class ProfileViewController: UIViewController {
     
     
     @objc func logOut() {
-        if FirebaseAuthService.manager.signOut() {
-        dismiss(animated: false) {
-            self.delegate?.logOut()
+        let prompt = UIAlertController(title: "Warning", message: "Do you want to log out?", preferredStyle: .alert)
+        prompt.overrideUserInterfaceStyle = .dark
+        let cancel = UIAlertAction(title: "Cancel", style: .default) { (action) in
+            prompt.dismiss(animated: true, completion: nil)
         }
+        let logOut = UIAlertAction(title: "Log Out", style: .destructive) { (action) in
+            if FirebaseAuthService.manager.signOut() {
+                self.dismiss(animated: false) {
+                    self.delegate?.logOut()
+                }
+            }
         }
+        prompt.addAction(cancel)
+        prompt.addAction(logOut)
+        present(prompt, animated: true, completion: nil)
+
     }
     
     
