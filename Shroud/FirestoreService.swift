@@ -220,6 +220,8 @@ class FirestoreService {
                         ids.append(id)
                     }
                     
+                    guard ids.count > 0 else { return }
+                    
                     self.db.collection("users").whereField("uid", in: ids).addSnapshotListener { (snapshot, error) in
                         if let error = error {
                             onCompletion(.failure(error))
