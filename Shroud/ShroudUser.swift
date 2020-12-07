@@ -44,7 +44,8 @@ struct ShroudUser {
             "email": email ?? "",
             "username": username,
             "uid": uid,
-            "status": status
+            "status": status,
+            "profilePicture": profilePicture
         ]
     }
 }

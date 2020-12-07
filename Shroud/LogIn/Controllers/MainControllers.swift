@@ -17,6 +17,7 @@ class MainControllers: UITabBarController {
 //        friend.title = "Shroud"
 //        let friendNav = UINavigationController(rootViewController:friend )
 //        friendNav.title = "Friends"
+        friend.tabBarItem.image = UIImage(named: "chat")
         viewControllers = [friend]
         self.tabBar.barTintColor = ShroudColors.darkGray
         self.tabBar.tintColor = .white

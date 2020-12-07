@@ -64,6 +64,17 @@ class FirestoreService {
         }
     }
     
+    
+    func blockFriend(_ uid: String, _ friend: ShroudUser) {
+        //add friend user to block collection
+        db.collection("users").document(uid).collection("blocked").document(friend.uid).setData(friend.fieldsDict) { (error) in
+            self.deleteFriend(uid, friend.uid)
+        }
+    }
+    
+    
+    
+    
     func deleteFriend(_ uid: String, _ friendUid: String) {
         let batch = db.batch()
         //delete user from your collection
@@ -115,41 +126,32 @@ class FirestoreService {
     }
     
     
-    func addFriend(_ username: String, onCompletion: @escaping (Result<Void, Error>) -> Void) {
+    
+    func addIsValid(_ username:String, _ uid: String ,onCompletion: @escaping (Result<ShroudUser, Error>) -> Void) {
+        
         db.collection("users").whereField("username", isEqualTo: username).getDocuments { (snapshot, error) in
             
             if let error = error {
                 onCompletion(.failure(error))
             } else {
                 if let snapshot = snapshot,
-                    snapshot.documents.count > 0,
-                    let shroudUser = ShroudUser(dictionary: snapshot.documents[0].data()) {
+                   snapshot.documents.count > 0,
+                   let shroudUser = ShroudUser(dictionary: snapshot.documents[0].data()) {
                     
-                    self.db.collection("users").document(FirebaseAuthService.manager.currentUser!.uid).collection("friends").document(shroudUser.uid).setData(shroudUser.fieldsDict) {
-                        error in
-                        
-                        if let error = error {
-                            onCompletion(.failure(error))
+                    self.db.collection("users").document(uid).collection("blocked").document(shroudUser.uid).getDocument { (doc, error) in
+                        if let doc = doc,
+                           doc.exists {
+                            onCompletion(.failure(GenericError.friendFound))
                         } else {
-                           
                             
-                            self.getCurrentShroudUser { (result) in
-                                
-                                switch result {
-                                case let .failure(error):
-                                    onCompletion(.failure(error))
-                                case let .success(user):
-                                    self.db.collection("users").document(shroudUser.uid).collection("friends").document(user.uid).setData(user.fieldsDict){ error in
-                                        if let error = error {
-                                            onCompletion(.failure(error))
-                                        } else {
-                                            onCompletion(.success(()))
-                                        }
-                                    }
+                            self.db.collection("users").document(shroudUser.uid).collection("blocked").document(uid).getDocument { (doc, error) in
+                                if let doc = doc,
+                                   doc.exists {
+                                    onCompletion(.failure(GenericError.friendFound))
+                                } else {
+                                    onCompletion(.success(shroudUser))
                                 }
                             }
-                            
-                            
                             
                         }
                     }
@@ -159,6 +161,47 @@ class FirestoreService {
             }
         }
     }
+    
+    
+    func addFriend(_ username: String, onCompletion: @escaping (Result<Void, Error>) -> Void) {
+        guard let current = FirebaseAuthService.manager.currentUser else { return }
+        
+        
+        addIsValid(username, current.uid) { (result) in
+            switch result {
+            case let .success(friend):
+                self.db.collection("users").document(current.uid).collection("friends").document(friend.uid).setData(friend.fieldsDict) {
+                    error in
+                    
+                    if let error = error {
+                        onCompletion(.failure(error))
+                    } else {
+                        
+                        
+                        self.getCurrentShroudUser { (result) in
+                            
+                            switch result {
+                            case let .failure(error):
+                                onCompletion(.failure(error))
+                            case let .success(user):
+                                self.db.collection("users").document(friend.uid).collection("friends").document(user.uid).setData(user.fieldsDict){ error in
+                                    if let error = error {
+                                        onCompletion(.failure(error))
+                                    } else {
+                                        onCompletion(.success(()))
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            case let .failure(error):
+                onCompletion(.failure(error))
+            }
+        }
+    }
+
+    
     
     func fetchFriends(onCompletion: @escaping (Result<[ShroudUser],Error>) -> Void) {
         guard let current = FirebaseAuthService.manager.currentUser else {
@@ -335,6 +378,43 @@ class FirestoreService {
         }
         
     }
+    
+    func fetchBlockedUsers(_ onCompletion: @escaping (Result<[ShroudUser],Error>) -> Void) {
+        guard let current = FirebaseAuthService.manager.currentUser else { return }
+        db.collection("users").document(current.uid).collection("blocked").addSnapshotListener { (snapshot, error) in
+            if let snapshot = snapshot {
+                
+                var users = [ShroudUser]()
+                
+                for document in snapshot.documents {
+                    guard let user = ShroudUser(dictionary: document.data()) else { continue }
+                    users.append(user)
+                }
+                
+                onCompletion(.success(users))
+                
+            } else if let error = error {
+                onCompletion(.failure(error))
+            }
+        }
+        
+        
+    }
+    
+    
+    func unblockUser(friendUID:String, onCompletion: @escaping (Result<Void,Error>) -> Void ) {
+        guard let currentUser = FirebaseAuthService.manager.currentUser else { return }
+        
+        db.collection("users").document(currentUser.uid).collection("blocked").document(friendUID).delete { (error) in
+            if let error = error {
+                onCompletion(.failure(error))
+            } else {
+                onCompletion(.success(()))
+            }
+        }
+        
+    }
+    
     
 }
 

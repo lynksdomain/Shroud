@@ -36,6 +36,7 @@ class MmsImageView: UIImageView {
     private func commonInit() {
         addGestureRecognizer(pictureTap)
         clipsToBounds = true
+        contentMode = .scaleAspectFill
         backgroundColor = .black
         isUserInteractionEnabled = true
         cancelButton.translatesAutoresizingMaskIntoConstraints = false

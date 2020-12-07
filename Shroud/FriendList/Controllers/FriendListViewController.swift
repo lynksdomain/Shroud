@@ -140,9 +140,9 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.avatar.kf.setImage(with: URL(string: user.profilePicture))
         
         if update.contains(user.uid) {
-            cell.backgroundColor = .green
+            cell.notificationView.isHidden = false
         } else {
-            cell.backgroundColor = .black
+            cell.notificationView.isHidden = true
         }
         return cell
     }
@@ -151,6 +151,7 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
         guard let currentUser = currentUser else {return}
         let user = friends[indexPath.row]
         if update.contains(user.uid) {
@@ -165,9 +166,8 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
         //alert to delete friend
         let prompt = UIAlertController(title: "Do you want to delete this friend?", message: "You will also be removed from their list", preferredStyle: .alert)
         prompt.overrideUserInterfaceStyle = .dark
-        let cancel = UIAlertAction(title: "Cancel", style: .default) { (alert) in
-            prompt.dismiss(animated: true, completion: nil)
-        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        
         let delete = UIAlertAction(title: "Delete", style: .destructive) { (alert) in
             guard let current = self.currentUser else { return }
             FirestoreService.manager.deleteFriend(current.uid, self.friends[row].uid)
@@ -179,7 +179,17 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func blockFriendPrompt(row:Int) {
         //alert to block friend
-        print("you are about to block a friend")
+        let prompt = UIAlertController(title: "Do you want to block this friend?", message: "They will not be able to add you again until you unblock them", preferredStyle: .alert)
+        prompt.overrideUserInterfaceStyle = .dark
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        let block = UIAlertAction(title: "Block", style: .destructive) { (alert) in
+            guard let current = self.currentUser else { return }
+            FirestoreService.manager.blockFriend(current.uid, self.friends[row])
+        }
+        prompt.addAction(cancel)
+        prompt.addAction(block)
+        present(prompt, animated: true, completion: nil)
     }
     
     

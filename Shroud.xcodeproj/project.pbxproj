@@ -10,6 +10,9 @@
 		390502AD2534C80200828B11 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390502AC2534C80200828B11 /* ProfileViewController.swift */; };
 		390502B2253672A000828B11 /* EditStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390502B1253672A000828B11 /* EditStatusView.swift */; };
 		390502B72536747700828B11 /* EditStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390502B62536747700828B11 /* EditStatusViewController.swift */; };
+		391D48042578268D00396CEF /* BlockedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391D48032578268D00396CEF /* BlockedCell.swift */; };
+		391FD827257802D900BB58D0 /* BlockedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391FD826257802D900BB58D0 /* BlockedViewController.swift */; };
+		391FD82C257802EB00BB58D0 /* BlockedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391FD82B257802EB00BB58D0 /* BlockedView.swift */; };
 		3928FD8A2576F6BC0008DA29 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928FD892576F6BC0008DA29 /* UserDefaults.swift */; };
 		393C68E625030B09003B6849 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393C68E525030B09003B6849 /* SignInView.swift */; };
 		393E57A725676E63007AD834 /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E57A625676E63007AD834 /* FirebaseStorageService.swift */; };
@@ -77,6 +80,9 @@
 		390502AC2534C80200828B11 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		390502B1253672A000828B11 /* EditStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStatusView.swift; sourceTree = "<group>"; };
 		390502B62536747700828B11 /* EditStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStatusViewController.swift; sourceTree = "<group>"; };
+		391D48032578268D00396CEF /* BlockedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedCell.swift; sourceTree = "<group>"; };
+		391FD826257802D900BB58D0 /* BlockedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedViewController.swift; sourceTree = "<group>"; };
+		391FD82B257802EB00BB58D0 /* BlockedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedView.swift; sourceTree = "<group>"; };
 		3928FD892576F6BC0008DA29 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		393C68E525030B09003B6849 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		393E57A625676E63007AD834 /* FirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
@@ -187,6 +193,8 @@
 				3963015F250AA61900939CA9 /* FriendListCell.swift */,
 				394280052534BE5400C93501 /* ProfileView.swift */,
 				390502B1253672A000828B11 /* EditStatusView.swift */,
+				391FD82B257802EB00BB58D0 /* BlockedView.swift */,
+				391D48032578268D00396CEF /* BlockedCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -198,6 +206,7 @@
 				39630161250AC5A600939CA9 /* AddFriendViewController.swift */,
 				390502AC2534C80200828B11 /* ProfileViewController.swift */,
 				390502B62536747700828B11 /* EditStatusViewController.swift */,
+				391FD826257802D900BB58D0 /* BlockedViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -603,6 +612,7 @@
 				39BDD54F2509C5DB00223D98 /* MainControllers.swift in Sources */,
 				394280062534BE5400C93501 /* ProfileView.swift in Sources */,
 				3993CD44252F822500075DCB /* HeadingMsgView.swift in Sources */,
+				391FD82C257802EB00BB58D0 /* BlockedView.swift in Sources */,
 				39BDD54D2509C4A700223D98 /* FriendListViewController.swift in Sources */,
 				39B371512508336800C6C172 /* FirebaseAuthService.swift in Sources */,
 				39630164250AE79F00939CA9 /* AddFriendView.swift in Sources */,
@@ -614,6 +624,7 @@
 				3963BF59252E1B7900D503B1 /* FriendMsgCell.swift in Sources */,
 				3990BBE5256D83D400D1013B /* ImagePreviewViewController.swift in Sources */,
 				398C6C22250320B5002AC72A /* SignInViewController.swift in Sources */,
+				391D48042578268D00396CEF /* BlockedCell.swift in Sources */,
 				390502AD2534C80200828B11 /* ProfileViewController.swift in Sources */,
 				39BDD54B2509C49200223D98 /* FriendListView.swift in Sources */,
 				3990BBE0256D69CC00D1013B /* MmsImageView.swift in Sources */,
@@ -621,6 +632,7 @@
 				390502B72536747700828B11 /* EditStatusViewController.swift in Sources */,
 				3990BBEA256DB75A00D1013B /* ImageCell.swift in Sources */,
 				3990BBEF256DB8A200D1013B /* UserImgCell.swift in Sources */,
+				391FD827257802D900BB58D0 /* BlockedViewController.swift in Sources */,
 				39630162250AC5A600939CA9 /* AddFriendViewController.swift in Sources */,
 				399FBB6A2512F54F00C9096B /* MessageViewController.swift in Sources */,
 				39630160250AA61900939CA9 /* FriendListCell.swift in Sources */,
@@ -811,10 +823,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = lynk.Shroud;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lynk.Shroud;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -831,10 +843,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = lynk.Shroud;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lynk.Shroud;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

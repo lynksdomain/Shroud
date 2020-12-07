@@ -39,6 +39,7 @@ class ProfileViewController: UIViewController {
         profileView.editPhoto.addTarget(self, action: #selector(editPhoto))
         profileView.editStatus.addTarget(self, action: #selector(editStatus), for: .touchUpInside)
         profileView.logOut.addTarget(self, action: #selector(logOut), for: .touchUpInside)
+        profileView.blockedFriends.addTarget(self, action: #selector(blockedUsers), for: .touchUpInside)
         profileView.usernameLabel.text = user.username
         profileView.statusField.text = user.status
         profileView.profileImage.kf.indicatorType = .activity
@@ -46,12 +47,17 @@ class ProfileViewController: UIViewController {
     }
     
     
+    @objc func blockedUsers() {
+        let blocked = BlockedViewController()
+        let nav = UINavigationController(rootViewController: blocked)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
+    }
+    
     @objc func logOut() {
         let prompt = UIAlertController(title: "Warning", message: "Do you want to log out?", preferredStyle: .alert)
         prompt.overrideUserInterfaceStyle = .dark
-        let cancel = UIAlertAction(title: "Cancel", style: .default) { (action) in
-            prompt.dismiss(animated: true, completion: nil)
-        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) 
         let logOut = UIAlertAction(title: "Log Out", style: .destructive) { (action) in
             if FirebaseAuthService.manager.signOut() {
                 self.dismiss(animated: false) {

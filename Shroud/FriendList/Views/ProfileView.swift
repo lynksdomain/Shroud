@@ -59,6 +59,15 @@ class ProfileView: ProgrammaticView {
         return button
     }()
     
+    lazy var blockedFriends: UIButton = {
+        let button = UIButton(type: .roundedRect)
+        button.setTitle("Blocked Users", for: .normal)
+        button.backgroundColor = .clear
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        return button
+    }()
+    
     lazy var logOut: UIButton = {
        let button = UIButton(type: .roundedRect)
         button.setTitle("Log Out", for: .normal)
@@ -86,6 +95,7 @@ class ProfileView: ProgrammaticView {
         menuView.addSubview(statusField)
         menuView.addSubview(editStatus)
         menuView.addSubview(logOut)
+        menuView.addSubview(blockedFriends)
         editStatus.translatesAutoresizingMaskIntoConstraints = false
         statusField.translatesAutoresizingMaskIntoConstraints = false
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -94,12 +104,14 @@ class ProfileView: ProgrammaticView {
         transparencyView.translatesAutoresizingMaskIntoConstraints = false
         menuView.translatesAutoresizingMaskIntoConstraints = false
         logOut.translatesAutoresizingMaskIntoConstraints = false
+        blockedFriends.translatesAutoresizingMaskIntoConstraints = false
         transparencyConstraints()
         menuConstraints()
         profileConstraints()
         usernameConstraints()
         statusConstraints()
         editStatusConstraints()
+        blockedConstraints()
         logoutConstraints()
         transparencyView.addGestureRecognizer(tap)
         profileImage.addGestureRecognizer(editPhoto)
@@ -112,8 +124,15 @@ class ProfileView: ProgrammaticView {
                                      logOut.heightAnchor.constraint(equalToConstant: 25)])
     }
     
+    private func blockedConstraints() {
+        NSLayoutConstraint.activate([blockedFriends.bottomAnchor.constraint(equalTo: logOut.topAnchor, constant: -11),
+                                        blockedFriends.leadingAnchor.constraint(equalTo: menuView.leadingAnchor, constant:  20),
+                                     blockedFriends.trailingAnchor.constraint(equalTo: menuView.trailingAnchor, constant:  -20),
+                                     blockedFriends.heightAnchor.constraint(equalToConstant: 25)])
+    }
+    
     private func editStatusConstraints() {
-        NSLayoutConstraint.activate([editStatus.bottomAnchor.constraint(equalTo: logOut.topAnchor, constant:  -11),
+        NSLayoutConstraint.activate([editStatus.bottomAnchor.constraint(equalTo: blockedFriends.topAnchor, constant:  -11),
                                      editStatus.leadingAnchor.constraint(equalTo: menuView.leadingAnchor, constant:  20),
                                      editStatus.trailingAnchor.constraint(equalTo: menuView.trailingAnchor, constant:  -20),
                                      editStatus.topAnchor.constraint(equalTo: statusField.bottomAnchor, constant:  20),
@@ -166,6 +185,10 @@ class ProfileView: ProgrammaticView {
         editStatus.layer.cornerCurve = .continuous
         logOut.layer.cornerRadius = 5
         logOut.layer.cornerCurve = .continuous
+        blockedFriends.layer.cornerRadius = 5
+        blockedFriends.layer.cornerCurve = .continuous
+        blockedFriends.layer.borderWidth = 0.5
+        blockedFriends.layer.borderColor = UIColor.white.cgColor
     }
     
     
